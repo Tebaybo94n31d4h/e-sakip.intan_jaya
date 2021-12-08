@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Controllers\BaseController;
 use App\Models\ModelProcedure;
 use App\Models\ModelProcedurepemda;
 
@@ -50,6 +51,7 @@ class User extends BaseController
 					'get' => session() // ambil session user yang sedang login
 				];
 				return view('adminpemda/v_profile', $data);
+
 			} else{
 
                     return redirect()->to('blocked/blocked');
@@ -63,6 +65,7 @@ class User extends BaseController
     {
         if (session()->logged_in) {
 			if (session()->hakakses == 2) {
+				
 				$procedure = new ModelProcedurepemda;
 				$hah_id = $this->session->hakakses;
 				$user_id = $this->session->id;
@@ -76,6 +79,7 @@ class User extends BaseController
 					'get' => session() // ambil session user yang sedang login
 				];
 				return view('adminpemda/v_profile', $data);
+
 			} else{
 
                     return redirect()->to('blocked/blocked');

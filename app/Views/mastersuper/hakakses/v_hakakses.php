@@ -3,25 +3,25 @@
 <?= $this->section('content'); ?>
 
 <!-- animasi style sweet alert -->
-<link rel="stylesheet" href="<?= base_url(); ?>/switalert/animate.min.css">
-  <link rel="stylesheet" href="<?= base_url(); ?>/switalert/sweetalert2.min.css">
+<link rel="stylesheet" href="<?= htmlentities(base_url('/switalert/animate.min.css')); ?>">
+<link rel="stylesheet" href="<?= htmlentities(base_url('/switalert/sweetalert2.min.css')); ?>">
 
 <div id="berhasil" data-berhasil="<?= session()->getFlashdata('berhasil');  ?>"></div>
 <div id="update" data-update="<?= session()->getFlashdata('update');  ?>"></div>
 <div id="sudah_ada" data-sudah_ada="<?= session()->getFlashdata('sudah_ada');  ?>"></div>
-<div id="gagal" data-gagal="<?= session()->getFlashdata('gagal');  ?>"></div>
 <div id="hapus" data-hapus="<?= session()->getFlashdata('hapus');  ?>"></div>
 
 <div class="section-header">
-    <h1><?= $subtitle; ?></h1>
+    <h1><?= htmlentities($subtitle); ?></h1>
     
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?= base_url('/dashboard'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboards')); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
     <div class="section-header-button">
-        <form action="<?= base_url('master/f_hakakses'); ?>   " method="post">
+        <form action="<?= htmlentities(base_url('master/f_hakakses')); ?>" method="post">
+            <?= csrf_field(); ?>
             <button class="btn btn-primary btn-icon icon-left m-2">
                 <i class="fas fa-plus"></i>
                 <span>Tambah Baru</span>
@@ -36,7 +36,7 @@
         Informasi tentang data hak akses dihalaman ini.
     </p>
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-12 col-sm-12 col-lg-5">
             <div class="card card-primary shadow">
                 <!-- <div class="card-header">
                     <h4>Data Hak Akses</h4>
@@ -54,7 +54,7 @@
                             <?php $no =1; ?>
                             <?php foreach($HakAkses as $ha) : ?>
                             <tr>
-                                <td><?= $no; ?></td>
+                                <td><?= htmlentities($no); ?></td>
                                 <td>
                                     <style>
                                         .nama_hak_akses{
@@ -65,15 +65,18 @@
                                         }
                                         .nama_hak_akses:hover{
                                             background-color: rgba(90, 69, 250, 0.867);
-                                            color: yellow;
+                                            border: 1px solid yellow;
+                                            color: white;
+
+                                            box-shadow: 3px 3px 3px 1px gainsboro;   
                                         }
                                     </style>
-                                    <button type="button" style="cursor: pointer;" onclick="ambildata(<?= $ha->id ;?>)" class="nama_hak_akses">
-                                        <?= $ha->nama_hak_akses; ?>
+                                    <button type="button" style="cursor: pointer;" onclick="ambildata(<?= htmlentities($ha->id) ;?>)" class="nama_hak_akses">
+                                        <?= htmlentities($ha->nama_hak_akses); ?>
                                     </button>
                                 </td>
                                 <td>
-                                    <a href="<?= base_url('master/f_edithakakses/' . $ha->id) ?>" class="btn btn-success btn-sm" data-toggle="tooltip" title="Edit hak akses : <?= $ha->nama_hak_akses; ?>"> <i class="fas fa-pencil-alt"></i> Edit</a>
+                                    <a href="<?= htmlentities(base_url('master/f_edithakakses/' . $ha->id)) ?>" class="btn btn-success btn-sm" data-toggle="tooltip" title="Edit hak akses : <?= htmlentities($ha->nama_hak_akses); ?>"> <i class="fas fa-pencil-alt"></i> Edit</a>
                                     <!-- <a href="</?= base_url('master/hapushakakses/' . $ha->id) ?>" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></a> -->
                                 </td>
                             </tr>
@@ -132,14 +135,14 @@
         </div>
     </div>
 </div>
-<script src="<?= base_url(); ?>/jquery/jquery-3.6.0.js"></script>
-<script src="<?= base_url(); ?>/switalert/sweetalert2.min.js"></script>
+<script src="<?= htmlentities(base_url('/jquery/jquery-3.6.0.js')); ?>"></script>
+<script src="<?= htmlentities(base_url('/switalert/sweetalert2.min.js')); ?>"></script>
 <script>
     function ambildata($id) {
         $("#modul-tampil").hide(500);
         $("#modul-tampil").show(1500);
             $.ajax({
-                url: "<?= base_url("master/ambildataModul") ?>/" + $id,
+                url: "<?= htmlentities(base_url("master/ambildataModul")) ?>/" + $id,
                 type: "get",
                 async: true,
                 dataType: 'json',
@@ -195,7 +198,7 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: "<?= base_url("master/updateIsModul") ?>",
+                    url: "<?= htmlentities(base_url("master/updateIsModul")) ?>",
                     dataType: 'json',
                     data: {
                         'id': id,
@@ -224,7 +227,7 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: "<?= base_url("master/updateIsModul") ?>",
+                    url: "<?= htmlentities(base_url("master/updateIsModul")) ?>",
                     dataType: 'json',
                     data: {
                         'id': id,
@@ -254,7 +257,7 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: "<?= base_url("master/updateIsModul") ?>",
+                    url: "<?= htmlentities(base_url("master/updateIsModul")) ?>",
                     dataType: 'json',
                     data: {
                         'id': id,
@@ -279,7 +282,7 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: "<?= base_url("master/updateIsModul") ?>",
+                    url: "<?= htmlentities(base_url("master/updateIsModul")) ?>",
                     dataType: 'json',
                     data: {
                         'id': id,
@@ -304,7 +307,7 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: "<?= base_url("master/updateIsModul") ?>",
+                    url: "<?= htmlentities(base_url("master/updateIsModul")) ?>",
                     dataType: 'json',
                     data: {
                         'id': id,

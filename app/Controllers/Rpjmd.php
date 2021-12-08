@@ -112,10 +112,10 @@ class Rpjmd extends BaseController
                     $validation =  \Config\Services::validation();
                     return redirect()->to('rpjmd/f_visip')->withInput()->with('validation', $validation);
                 }
-                $usr_input_id = session()->id;
-                $periode_id = $this->request->getVar('periode_id');
-                $no_urut = $this->request->getVar('no_urut');
-                $visi = $this->request->getVar('visi');
+                $usr_input_id = htmlspecialchars(session()->id);
+                $periode_id = htmlspecialchars($this->request->getVar('periode_id'));
+                $no_urut = htmlspecialchars($this->request->getVar('no_urut'));
+                $visi = htmlspecialchars($this->request->getVar('visi'));
                 // dd($usr_input_id,$periode_id,$no_urut,$visi);
                 $this->db->query("CALL visi_insert('$usr_input_id','$periode_id','$no_urut','$visi')")->getRow();
 
@@ -234,10 +234,10 @@ class Rpjmd extends BaseController
                     $validation =  \Config\Services::validation();
                     return redirect()->to('rpjmd/f_misip')->withInput()->with('validation', $validation);
                 }
-                $usr_input_id = session()->id;
-                $vs_id = $this->request->getVar('vs_id');
-                $n_urut = $this->request->getVar('n_urut');
-                $ms = $this->request->getVar('ms');
+                $usr_input_id = htmlspecialchars(session()->id);
+                $vs_id = htmlspecialchars($this->request->getVar('vs_id'));
+                $n_urut = htmlspecialchars($this->request->getVar('n_urut'));
+                $ms = htmlspecialchars($this->request->getVar('ms'));
                 // dd($usr_input_id,$periode_id,$no_urut,$visi);
                 $this->db->query("CALL misi_insert('$usr_input_id','$vs_id','$n_urut','$ms')")->getRow();
 
@@ -357,10 +357,10 @@ class Rpjmd extends BaseController
                     $validation =  \Config\Services::validation();
                     return redirect()->to('rpjmd/f_tujuanp')->withInput()->with('validation', $validation);
                 }
-                $ms_id = $this->request->getVar('ms_id');
-                $n_urut = $this->request->getVar('n_urut');
-                $tj = $this->request->getVar('tj');
-                $usr_input_id = session()->id;
+                $ms_id = htmlspecialchars($this->request->getVar('ms_id'));
+                $n_urut = htmlspecialchars($this->request->getVar('n_urut'));
+                $tj = htmlspecialchars($this->request->getVar('tj'));
+                $usr_input_id = htmlspecialchars(session()->id);
                 // dd($usr_input_id,$periode_id,$no_urut,$visi);
                 $this->db->query("CALL tujuan_insert('$ms_id','$n_urut','$tj',$usr_input_id)")->getRow();
 
@@ -472,9 +472,9 @@ class Rpjmd extends BaseController
                     $validation =  \Config\Services::validation();
                     return redirect()->to('rpjmd/f_sasaranp')->withInput()->with('validation', $validation);
                 }
-                $usr_input_id = session()->id;
-                $tj_id = $this->request->getVar('tj_id');
-                $ssrn = $this->request->getVar('ssrn');
+                $usr_input_id = htmlspecialchars(session()->id);
+                $tj_id = htmlspecialchars($this->request->getVar('tj_id'));
+                $ssrn = htmlspecialchars($this->request->getVar('ssrn'));
                 // dd($usr_input_id,$periode_id,$no_urut,$visi);
                 $this->db->query("CALL sasaran_insert('$usr_input_id','$tj_id','$ssrn')")->getRow();
 
@@ -636,11 +636,11 @@ class Rpjmd extends BaseController
                     $validation =  \Config\Services::validation();
                     return redirect()->to('rpjmd/f_indikatortujuanp')->withInput()->with('validation', $validation);
                 }
-                $usr_input_id = session()->id;
-                $tj_id = $this->request->getVar('tj_id');
-                $indktr_tj = $this->request->getVar('indktr_tj');
-                $trgt = $this->request->getVar('trgt');
-                $stn_id = $this->request->getVar('stn_id');
+                $usr_input_id = htmlspecialchars(session()->id);
+                $tj_id = htmlspecialchars($this->request->getVar('tj_id'));
+                $indktr_tj = htmlspecialchars($this->request->getVar('indktr_tj'));
+                $trgt = htmlspecialchars($this->request->getVar('trgt'));
+                $stn_id = htmlspecialchars($this->request->getVar('stn_id'));
                 // dd($usr_input_id,$periode_id,$no_urut,$visi);
                 $this->db->query("CALL indikator_tujuan_insert('$usr_input_id','$tj_id','$indktr_tj','$trgt','$stn_id')")->getRow();
 
@@ -684,9 +684,9 @@ class Rpjmd extends BaseController
                     $validation =  \Config\Services::validation();
                     return redirect()->to('rpjmd/f_indikatorsasaranp')->withInput()->with('validation', $validation);
                 }
-                $usr_input_id = session()->id;
-                $ssrn_id = $this->request->getVar('ssrn_id');
-                $indktr_ssrn = $this->request->getVar('indktr_ssrn');
+                $usr_input_id = htmlspecialchars(session()->id);
+                $ssrn_id = htmlspecialchars($this->request->getVar('ssrn_id'));
+                $indktr_ssrn = htmlspecialchars($this->request->getVar('indktr_ssrn'));
                 // dd($usr_input_id,$periode_id,$no_urut,$visi);
                 $this->db->query("CALL sasaran_insert('$usr_input_id','$ssrn_id','$indktr_ssrn')")->getRow();
 

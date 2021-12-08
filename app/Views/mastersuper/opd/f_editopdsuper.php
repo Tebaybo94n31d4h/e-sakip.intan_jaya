@@ -2,11 +2,8 @@
 
 <?= $this->section('content'); ?>
 
-<div id="berhasil" data-berhasil="<?= session()->getFlashdata('berhasil');  ?>"></div>
-<div id="update" data-update="<?= session()->getFlashdata('update');  ?>"></div>
 <div id="sudah_ada" data-sudah_ada="<?= session()->getFlashdata('sudah_ada');  ?>"></div>
 <div id="gagal" data-gagal="<?= session()->getFlashdata('gagal');  ?>"></div>
-<div id="hapus" data-hapus="<?= session()->getFlashdata('hapus');  ?>"></div>
 
 <div class="section-header">
     
@@ -20,6 +17,7 @@
 
     <div class="section-header-back">
         <form action="<?= base_url('master/opds'); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn btn-primary">
                 <i class="fas fa-arrow-left"></i> 
             </button>
@@ -39,10 +37,12 @@
             <div class="mb-3 mt-3 card">
                 <div class="card-body table-responsive">
                     <?= csrf_field(); ?>
+                    <input type="hidden" name="_method" value="PUT" />
                     <div class="card">
                         <div class="row">
-                            <div class="col">
+                            <div class="col-12 col-sm-6 col-lg-6">
                                 <div class="position-relative form-group">
+                                    <input type="hidden" name="id_opd" value="<?= $dataopd['id']; ?>">
                                     <label for="kode">Kode</label>
                                     <input name="kode" id="kode" value="<?= $dataopd['kode']; ?>" type="text" readonly class="form-control <?= ($validation->hasError('kode')) ? 'is-invalid' : ''; ?>">
                                     <div class="invalid-feedback">
@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-12 col-sm-6 col-lg-6">
                                 <p class="card-title text-primary" style="font-size: 16px; font-weight: bold;">Pilih Opsi</p>
                                 <div class="position-relative form-group">
                                     <label for="lvl_opd_id">Level</label>
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-12 col-sm-6 col-lg-6">
                                 <div class="position-relative form-group">
                                     <label for="alamat">Alamat</label>
                                     <input name="alamat" id="alamat" value="<?= $dataopd['alamat_opd']; ?>" type="text" class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>">
@@ -110,7 +110,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-12 col-sm-6 col-lg-6">
                                 <div class="position-relative form-group">
                                     <label for="email">Email</label>
                                     <input name="email" id="email" value="<?= $dataopd['email']; ?>" type="text" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>">

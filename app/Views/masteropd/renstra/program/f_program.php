@@ -15,6 +15,7 @@
 
     <div class="section-header-back">
         <form action="<?= base_url('renstra/programo'); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn btn-primary">
                 <i class="fas fa-arrow-left"></i>
             </button>
@@ -29,15 +30,15 @@
             <div class="card-header">
                 <h4 class="card-title">Form Tambah</h4>
             </div>
-            <div class="col-sm-8 m-auto">
+            <div class="col-12 col-sm-12 col-lg-8 m-auto">
                 <div class="mb-3 card">
                     <div class="card-body table-responsive">
                         <?= csrf_field(); ?>
                         <div class="row mb-3">
-                            <div class="col-sm-3"><label for="indktr_ssrn_opd_id">Indikator Sasaran Opd</label></div>
+                            <div class="col-sm-3"><label for="indktr_ssrn_opd_id">Indikator Sasaran <strong class="text-danger"><sup>*</sup></strong> </label></div>
                             <div class="col-sm-9">
                                 <select class="form-control <?= ($validation->hasError('indktr_ssrn_opd_id')) ? 'is-invalid' : ''; ?>" name="indktr_ssrn_opd_id" id="indktr_ssrn_opd_id">
-                                    <option value="">-- Pilih Indikator Sasaran Opd --</option>
+                                    <option value="">-- Pilih Indikator Sasaran --</option>
                                     <?php foreach ($selectindikatorsasaranopd as $sis) : ?>
                                         <option value="<?= $sis->id; ?>"><?= $sis->indikator_sasaran_opd; ?></option>
                                     <?php endforeach; ?>
@@ -48,9 +49,9 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-sm-3"><label for="nm_prgrm_opd">Nama Program Opd <strong class="text-danger"><sup>*</sup></strong> </label></div>
+                            <div class="col-sm-3"><label for="nm_prgrm_opd">Nama Program <strong class="text-danger"><sup>*</sup></strong> </label></div>
                             <div class="col sm-9">
-                                <textarea name="nm_prgrm_opd" id="nm_prgrm_opd" rows="5" class="form-control <?= ($validation->hasError('nm_prgrm_opd')) ? 'is-invalid' : ''; ?>"></textarea>
+                                <textarea name="nm_prgrm_opd" id="nm_prgrm_opd" class="form-control <?= ($validation->hasError('nm_prgrm_opd')) ? 'is-invalid' : ''; ?>"></textarea>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('nm_prgrm_opd'); ?>
                                 </div>

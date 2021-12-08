@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ModelProcedure;
+use App\Controllers\BaseController;
 
 
 class Admin extends BaseController

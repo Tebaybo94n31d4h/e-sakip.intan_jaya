@@ -9,15 +9,16 @@
 <div id="hapus" data-hapus="<?= session()->getFlashdata('hapus');  ?>"></div>
 
 <div class="section-header">
-    <h1><?= $subtitle; ?></h1>
+    <h1><?= htmlentities($subtitle); ?></h1>
 
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboardo'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboardo')); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
     <div class="section-header-button">
-        <form action="<?= base_url('renstra/f_sasarano'); ?>" method="post">
+        <form action="<?= htmlentities(base_url('renstra/f_sasarano')); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn btn-primary">
                 <i class="fas fa-plus"></i>
                 <span>Tambah Baru</span>
@@ -31,7 +32,7 @@
     <p class="section-lead">
         Informasi tentang data sasaran dihalaman ini.
     </p>
-    <div class="col-sm-12">
+    <div class="col-12 col-sm-12 col-lg-12">
         <div class="card card-primary">
             <!-- <div class="card-header">
                 <h4></?= $subtitle2; ?></h4>
@@ -50,9 +51,9 @@
                         <?php $no = 1; ?>
                         <?php foreach ($procedure as $p) : ?>
                             <tr>
-                                <td class="text-center"><?= $no; ?></td>
-                                <td><?= $p->tujuan_opd; ?></td>
-                                <td><?= $p->sasaran_opd; ?></td>
+                                <td class="text-center"><?= htmlentities($no); ?></td>
+                                <td><?= htmlentities($p->tujuan_opd); ?></td>
+                                <td><?= htmlentities($p->sasaran_opd); ?></td>
                                 <!-- <td>
                                     <a href="</?= base_url('renstra/indikatorsasaranopd/' . $p->id); ?>" class="btn btn-light"> <i class="fas fa-folder"></i> Indikator Sasaran OPD</a>
                                 </td> -->

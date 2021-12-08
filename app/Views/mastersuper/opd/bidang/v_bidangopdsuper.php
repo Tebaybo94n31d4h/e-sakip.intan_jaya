@@ -12,18 +12,19 @@
 
 <div class="section-header">
     <div class="section-header-back">
-        <form action="<?= base_url('master/opds'); ?>" method="post">
+        <form action="<?= htmlentities(base_url('master/opds')); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn btn-primary btn-icon icon-left">
                 <i class="fas fa-arrow-left"></i> 
             </button>
         </form>
     </div>
-    <h1><?= $subtitle; ?></h1>
+    <h1><?= htmlentities($subtitle); ?></h1>
     
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboard'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboard')); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
     
     <div class="section-header-button">
@@ -50,23 +51,23 @@
             <div class="card-header">
                 <h4>Data OPD</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <div class="row">
                     <table>
                         <tr>
-                            <td>Kode OPD : <?= $dataopd['kode']; ?> </td>
-                            <td>Nama OPD : <?= $dataopd['nama_opd']; ?></td>
-                            <td>Kode Pos : <?= $dataopd['kode_pos']; ?></td>
+                            <td>Kode OPD : <?= htmlentities($dataopd['kode']); ?> </td>
+                            <td>Nama OPD : <?= htmlentities($dataopd['nama_opd']); ?></td>
+                            <td>Kode Pos : <?= htmlentities($dataopd['kode_pos']); ?></td>
                         </tr>
                         <tr>
-                            <td>Nomor Unit Kerja : <?= $dataopd['nomor_unit_kerja']; ?> </td>
-                            <td>Alamat : <?= $dataopd['alamat_opd']; ?></td>
-                            <td>Telepon : <?= $dataopd['telepon']; ?></td>
+                            <td>Nomor Unit Kerja : <?= htmlentities($dataopd['nomor_unit_kerja']); ?> </td>
+                            <td>Alamat : <?= htmlentities($dataopd['alamat_opd']); ?></td>
+                            <td>Telepon : <?= htmlentities($dataopd['telepon']); ?></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>Email : <?= $dataopd['email']; ?></td>
-                            <td>Fax : <?= $dataopd['fax']; ?></td>
+                            <td>Email : <?= htmlentities($dataopd['email']); ?></td>
+                            <td>Fax : <?= htmlentities($dataopd['fax']); ?></td>
                         </tr>
                     </table>
                 </div>
@@ -94,24 +95,25 @@
                         <?php $no = 1 ; ?>
                         <?php foreach($databidang as $db) : ?>
                         <tr>
-                            <td><?= $no; ?></td>
-                            <td><?= $db->kode; ?></td>
-                            <td><?= $db->nama_bidang; ?></td>
+                            <td><?= htmlentities($no); ?></td>
+                            <td><?= htmlentities($db->kode); ?></td>
+                            <td><?= htmlentities($db->nama_bidang); ?></td>
                             <td>
-                                <form action="<?= base_url('master/subbidangs/'. $db->id); ?>" method="post">
-                                    <button style="cursor: pointer;" class="btn btn-sm btn-light" data-toggle="tooltip" title="FORM SUB BIDANG DENGAN BIDANG : <?= $db->nama_bidang; ?>">
+                                <form action="<?= htmlentities(base_url('master/subbidangs/'. $db->id)); ?>" method="post">
+                                    <?= csrf_field() ;?>
+                                    <button style="cursor: pointer;" class="btn btn-sm btn-light" data-toggle="tooltip" title="Form sub bidang : <?= htmlentities($db->nama_bidang); ?>">
                                         <i class="fas fa-folder"></i>    
                                         Sub Bidang
                                     </button>
                                 </form>
                             </td>
                             <td class="text-right">
-                                <button type="button" onclick="f_editbidangs(<?= $db->id ;?>)" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit" data-toggle="tooltip" title="EDIT BIDANG : <?= $db->nama_bidang; ?>">
+                                <button type="button" onclick="f_editbidangs(<?= htmlentities($db->id) ;?>)" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit" data-toggle="tooltip" title="Edit bidang : <?= htmlentities($db->nama_bidang); ?>">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>
                             </td>
                             <td>
-                                <a href="<?= base_url('master/hapusbidangs/'. $db->id); ?>" style="cursor: pointer;" class="btn btn-sm btn-danger btn-hapus" data-toggle="tooltip" title="DELETE BIDANG : <?= $db->nama_bidang; ?>">
+                                <a href="<?= htmlentities(base_url('master/hapusbidangs/'. $db->id)); ?>" style="cursor: pointer;" class="btn btn-sm btn-danger btn-hapus" data-toggle="tooltip" title="Hapus bidang : <?= htmlentities($db->nama_bidang); ?>">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
@@ -137,7 +139,7 @@
 </div>
 
 <!-- Modal Tambah -->
-<!-- <form action="</?= base_url('master/proccesstambahbidangs/' . $dataopd['id']); ?>" method="POST" id="tab-content-1"> -->
+<!-- <form role="form" action="" method="post" enctype="multipart/form-data"> -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -145,29 +147,30 @@
                     <h5 class="modal-title mb-3" style="font-size: 16px; color: yellow;" id="staticBackdropLabel">Form Tambah</h5>
                     <button type="button" class="btn-close mb-3 tombolTutup" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="form-tambah">
 
                     <!-- alert error -->
                     <div class="alert alert-danger error" role="alert" style="display: none;"></div>
                     <!-- alert sukses -->
                     <div class="alert alert-primary sukses" role="alert" style="display: none;"></div>
-
+                    
                     <?= csrf_field(); ?>
+                    
                     <div class="row">
                         <input type="hidden" name="id" id="id">
-                        <div class="position-relative form-group col">
+                        <div class="position-relative form-group col-12 col-sm-12 col-lg-6">
                             <label for="kode">Kode</label>
-                            <input name="kode" id="kode" type="text" class="form-control <?= ($validation->hasError('kode')) ? 'is-invalid' : ''; ?>">
+                            <input name="kode" value="<?= old('kode') ?>" id="kode" type="text" class="form-control <?= ($validation->hasError('kode')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan kode bidang">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('kode'); ?>
                             </div>
                         </div>
-                        <div class="position-relative form-group col">
+                        <div class="position-relative form-group col-12 col-sm-12 col-lg-6">
                             <label for="type">Type Bidang</label>
                             <select class="form-select <?= ($validation->hasError('type')) ? 'is-invalid' : ''; ?>" name="type" id="type">
                                 <option value="">-- Pilih Type Bidang --</option>
                                 <?php foreach($selectTipebidang as $stb) : ?>
-                                <option value="<?= $stb->id; ?>"><?= $stb->tipe; ?></option>
+                                <option value="<?= htmlentities($stb->id); ?>"><?= htmlentities($stb->tipe); ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="invalid-feedback">
@@ -176,9 +179,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="position-relative form-group col">
+                        <div class="position-relative form-group col-12 col-sm-12 col-lg-12">
                             <label for="nama_bidang">Nama Bidang</label>
-                            <input name="nama_bidang" id="nama_bidang" type="text" class="form-control <?= ($validation->hasError('nama_bidang')) ? 'is-invalid' : ''; ?>">
+                            <input name="nama_bidang" value="<?= old('nama_bidang') ?>" id="nama_bidang" type="text" class="form-control <?= ($validation->hasError('nama_bidang')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan nama bidang">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('nama_bidang'); ?>
                             </div>
@@ -204,15 +207,17 @@
                 </div>
                 <div class="modal-body">
 
-                    <!-- alert error -->
+                     <!-- alert error -->
                     <div class="alert alert-danger error" role="alert" style="display: none;"></div>
                     <!-- alert sukses -->
                     <div class="alert alert-primary sukses" role="alert" style="display: none;"></div>
-
+                    
                     <?= csrf_field(); ?>
+                    
+                    <input type="hidden" value="PUT" name="_method">
                     <input type="hidden" name="id" id="id" class="id">
                     <div class="row">
-                        <div class="position-relative form-group col">
+                        <div class="position-relative form-group col-12 col-sm-12 col-lg-12">
                             <label for="kodee">Kode</label>
                             <input name="kodee" id="kodee" type="text" class="form-control <?= ($validation->hasError('kodee')) ? 'is-invalid' : ''; ?> kodee">
                             <div class="invalid-feedback">
@@ -221,8 +226,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="position-relative form-group col">
+                        <div class="position-relative form-group col-12 col-sm-12 col-lg-12">
                             <label for="nama_bidangg">Nama Bidang</label>
+                            <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                             <input name="nama_bidangg" id="nama_bidangg" type="text" class="form-control <?= ($validation->hasError('nama_bidangg')) ? 'is-invalid' : ''; ?> nama_bidangg">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('nama_bidangg'); ?>
@@ -246,7 +252,7 @@
         // fungsi edit diambil dari button edit di onclick
         function f_editbidangs($id){
             $.ajax({
-                url: "<?= base_url("master/f_editbidangs") ?>/" + $id,
+                url: "<?= htmlentities(base_url("master/f_editbidangs")) ?>/" + $id,
                 type: "get",
                 // data: "data",
                 // dataType: "dataType",
@@ -269,8 +275,8 @@
 
             // ajax
             $.ajax({
-                type: "POST",
-                url: "<?= base_url('master/proccesseditbidangs'); ?>",
+                type: "GET",
+                url: "<?= htmlentities(base_url('master/proccesseditbidangs')); ?>",
                 data: {
                     id: $id,
                     kode: $kode,
@@ -318,8 +324,8 @@
 
             // ajax
             $.ajax({
-                type: "POST",
-                url: "<?= base_url('master/proccesstambahbidangs/' . $dataopd['id']); ?>",
+                type: "GET",
+                url: "<?= htmlentities(base_url('master/proccesstambahbidangs/' . $dataopd['id'])); ?>",
                 data: {
                     kode: $kode,
                     type: $type,

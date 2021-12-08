@@ -19,6 +19,7 @@
     </div>
     <div class="section-header-button">
         <form action="<?= base_url('renstra/f_indikatorprogramopd'); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn btn-primary">
                 <i class="fas fa-plus"></i>
                 <span>Tambah Baru</span>
@@ -32,7 +33,7 @@
     <p class="section-lead">
         Informasi tentang data indikator program opd dihalaman ini.
     </p>
-    <div class="col-sm-12">
+    <div class="col-12 col-sm-12 col-lg-12">
         <div class="card card-primary">
             <!-- <div class="card-header">
                 <h4></?= $subtitle2; ?></h4>
@@ -50,9 +51,9 @@
                         <?php $no = 1; ?>
                         <?php foreach ($procedure as $p) : ?>
                             <tr>
-                                <td class="text-center"><?= $no; ?></td>
-                                <td><?= $p->nama_program_opd; ?></td>
-                                <td><?= $p->indikator_program_opd; ?></td>
+                                <td class="text-center"><?= htmlentities($no); ?></td>
+                                <td><?= htmlentities($p->nama_program_opd); ?></td>
+                                <td><?= htmlentities($p->indikator_program_opd); ?></td>
                             </tr>
                             <?php $no++; ?>
                         <?php endforeach; ?>

@@ -15,6 +15,7 @@
 
     <div class="section-header-back">
         <form action="<?= base_url('renstra/targetindikatorsasaran'); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn btn-primary">
                 <i class="fas fa-arrow-left"></i>
             </button>
@@ -29,15 +30,15 @@
             <div class="card-header">
                 <h4 class="card-title">Form Tambah</h4>
             </div>
-            <div class="col-sm-8 m-auto">
+            <div class="col-12 col-sm-12 col-lg-12 m-auto">
                 <div class="mb-3 card">
                     <div class="card-body table-responsive">
                         <?= csrf_field(); ?>
                         <div class="row mb-3">
-                            <div class="col-sm-3"><label for="indktr_prgrm_opd_id">Indikator Sasaran Opd</label></div>
+                            <div class="col-sm-3"><label for="indktr_prgrm_opd_id">Indikator Sasaran <strong class="text-danger"><sup>*</sup></strong> </label></div>
                             <div class="col-sm-9">
                                 <select class="form-control <?= ($validation->hasError('indktr_prgrm_opd_id')) ? 'is-invalid' : ''; ?>" name="indktr_prgrm_opd_id" id="indktr_prgrm_opd_id">
-                                    <option value="">-- Pilih Indikator Program Opd --</option>
+                                    <option value="">-- Pilih Indikator Program --</option>
                                     <?php foreach ($selectindikatorprogramopd as $sipo) : ?>
                                         <option value="<?= $sipo->id; ?>">
                                             <?= $sipo->indikator_program_opd; ?></option>
@@ -49,7 +50,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-sm-3"><label for="stn_id">Satuan</label></div>
+                            <div class="col-sm-3"><label for="stn_id">Satuan <strong class="text-danger"><sup>*</sup></strong> </label></div>
                             <div class="col-sm-9">
                                 <select class="form-control <?= ($validation->hasError('stn_id')) ? 'is-invalid' : ''; ?>" name="stn_id" id="stn_id">
                                     <option value="">-- Pilih Satuan --</option>
@@ -64,7 +65,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-sm-3"><label for="sb_prd_id">Sub Periode</label></div>
+                            <div class="col-sm-3"><label for="sb_prd_id">Sub Periode <strong class="text-danger"><sup>*</sup></strong> </label></div>
                             <div class="col-sm-9">
                                 <select class="form-control <?= ($validation->hasError('sb_prd_id')) ? 'is-invalid' : ''; ?>" name="sb_prd_id" id="sb_prd_id">
                                     <option value="">-- Pilih Sub Periode --</option>
@@ -79,9 +80,9 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-sm-3"><label for="trgt_indktr_prgrm_opd">Target Indikator Program Opd</label></div>
+                            <div class="col-sm-3"><label for="trgt_indktr_prgrm_opd">Target Indikator Program <strong class="text-danger"><sup>*</sup></strong> </label></div>
                             <div class="col-sm-9">
-                                <textarea name="trgt_indktr_prgrm_opd" id="trgt_indktr_prgrm_opd" rows="5" class="form-control <?= ($validation->hasError('trgt_indktr_prgrm_opd')) ? 'is-invalid' : ''; ?>"></textarea>
+                                <textarea name="trgt_indktr_prgrm_opd" id="trgt_indktr_prgrm_opd" class="form-control <?= ($validation->hasError('trgt_indktr_prgrm_opd')) ? 'is-invalid' : ''; ?>"></textarea>
                                 </select>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('trgt_indktr_prgrm_opd'); ?>
@@ -89,7 +90,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-sm-3"><label for="anggrn">Anggaran<strong class="text-danger"><sup>*</sup></strong> </label></div>
+                            <div class="col-sm-3"><label for="anggrn">Anggaran <strong class="text-danger"><sup>*</sup></strong> </label></div>
                             <div class="col sm-9">
                                 <input name="anggrn" id="anggrn" class="form-control <?= ($validation->hasError('anggrn')) ? 'is-invalid' : ''; ?>">
                                 <div class="invalid-feedback">

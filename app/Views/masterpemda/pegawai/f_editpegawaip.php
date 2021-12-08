@@ -6,16 +6,16 @@
 
 <div class="section-header">
 
-     <h1> <?= $subtitle; ?></h1>
+     <h1> <?= htmlentities($subtitle); ?></h1>
 
     <div class="section-header-breadcrumb pr-2">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboardp'); ?>">Dashboard </a> </div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboardp')); ?>">Dashboard </a> </div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
 
     <div class="section-header-back">
-        <form action="<?= base_url('master/pegawaip'); ?>" method="post">
+        <form action="<?= htmlentities(base_url('master/pegawaip')); ?>" method="post">
             <button class="btn mt-2 mb-2 btn-primary">
                 <i class="fas fa-arrow-left"></i> 
             </button>
@@ -26,7 +26,7 @@
 
 <div class="section-body">
     <div class="card">
-        <form action="<?= base_url('master/proccesseditpegawaip'); ?>" method="POST" id="tab-content-1">
+        <form action="<?= htmlentities(base_url('master/proccesseditpegawaip')); ?>" method="POST" id="tab-content-1">
 
             <div class="card-header">
                 <h4 class="card-title">Form Edit</h4>
@@ -36,27 +36,27 @@
                     <?= csrf_field(); ?>
                     <div class="card">
                         <div class="row">
-                            <div class="col">
+                            <div class="col-12 col-sm-12 col-lg-6">
                                 <p class="card-title text-primary" style="font-size: 16px; font-weight: bold;">Biodata</p>
                                 <div class="position-relative form-group">
-                                    <input type="hidden" name="pegawai_id" id="pegawai_id" value="<?= $datapegawai->id; ?>">
+                                    <input type="hidden" name="pegawai_id" id="pegawai_id" value="<?= htmlentities($datapegawai->id); ?>">
 
                                     <label for="nip">Nip <strong class="text-danger"><sup>*</sup></strong> </label>
-                                    <input name="nip" id="nip" value="<?= $datapegawai->nip ;?>" type="text" class="form-control <?= ($validation->hasError('nip')) ? 'is-invalid' : ''; ?>">
+                                    <input name="nip" id="nip" value="<?= htmlentities($datapegawai->nip) ;?>" type="text" class="form-control <?= ($validation->hasError('nip')) ? 'is-invalid' : ''; ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('nip'); ?>
                                     </div>
                                 </div>
                                 <div class="position-relative form-group">
                                     <label for="nik">Nik <strong class="text-danger"><sup>*</sup></strong></label>
-                                    <input name="nik" value="<?= $datapegawai->nik ;?>" id="nik" type="text" class="form-control <?= ($validation->hasError('nik')) ? 'is-invalid' : ''; ?>">
+                                    <input name="nik" value="<?= htmlentities($datapegawai->nik) ;?>" id="nik" type="text" class="form-control <?= ($validation->hasError('nik')) ? 'is-invalid' : ''; ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('nik'); ?>
                                     </div>
                                 </div>
                                 <div class="position-relative form-group">
                                     <label for="nama_pegawai">Nama Lengkap <strong class="text-danger"><sup>*</sup></strong></label>
-                                    <input name="nama_pegawai" value="<?= $datapegawai->nama_pegawai ;?>" id="nama_pegawai" type="text" class="form-control <?= ($validation->hasError('nama_pegawai')) ? 'is-invalid' : ''; ?>">
+                                    <input name="nama_pegawai" value="<?= htmlentities($datapegawai->nama_pegawai) ;?>" id="nama_pegawai" type="text" class="form-control <?= ($validation->hasError('nama_pegawai')) ? 'is-invalid' : ''; ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('nama_pegawai'); ?>
                                     </div>
@@ -79,20 +79,20 @@
                                 </div>
                                 <div class="position-relative form-group">
                                     <label for="no_hp">No. Telp</label>
-                                    <input name="no_hp" value="<?= $datapegawai->no_hp ;?>" id="no_hp" type="text" class="form-control <?= ($validation->hasError('no_hp')) ? 'is-invalid' : ''; ?>">
+                                    <input name="no_hp" value="<?= htmlentities($datapegawai->no_hp) ;?>" id="no_hp" type="text" class="form-control <?= ($validation->hasError('no_hp')) ? 'is-invalid' : ''; ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('no_hp'); ?>
                                     </div>
                                 </div>
                                 <div class="position-relative form-group">
                                     <label for="email">Email</label>
-                                    <input name="email" value="<?= $datapegawai->email ;?>" id="email" type="email" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>">
+                                    <input name="email" value="<?= htmlentities($datapegawai->email) ;?>" id="email" type="email" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('email'); ?>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-12 col-sm-12 col-lg-6">
                                 <p class="card-title text-primary" style="font-size: 16px; font-weight: bold;">Pilih Opsi</p>
                                 <div class="position-relative form-group">
                                     <label for="jabatan_id">Jabatan <strong class="text-danger"><sup>*</sup></strong></label>
@@ -100,9 +100,9 @@
                                         <option value="">---Pilih Jabatan---</option>
                                         <?php foreach($selectjabatansuper as $sj) : ?>
                                             <?php if($sj->id == $datapegawai->jabatan_id) : ?>
-                                                <option value="<?= $sj->id; ?>" selected><?= $sj->nama_jabatan; ?></option>
+                                                <option value="<?= htmlentities($sj->id); ?>" selected><?= htmlentities($sj->nama_jabatan); ?></option>
                                             <?php else : ?>
-                                                <option value="<?= $sj->id; ?>"><?= $sj->nama_jabatan; ?></option>
+                                                <option value="<?= htmlentities($sj->id); ?>"><?= htmlentities($sj->nama_jabatan); ?></option>
                                             <?php endif; ?>
                                         <?php endforeach ; ?>
                                     </select>
@@ -116,9 +116,9 @@
                                         <option value="">-- Pilih Golongan --</option>
                                         <?php foreach($selectgolongansuper as $gs) : ?>
                                             <?php if($gs->id == $datapegawai->golongan_pegawai_id) : ?>
-                                                <option value="<?= $gs->id; ?>" selected><?= $gs->nama_golongan; ?></option>
+                                                <option value="<?= htmlentities($gs->id); ?>" selected><?= htmlentities($gs->nama_golongan); ?></option>
                                             <?php else : ?>
-                                                <option value="<?= $gs->id; ?>"><?= $gs->nama_golongan; ?></option>
+                                                <option value="<?= htmlentities($gs->id); ?>"><?= htmlentities($gs->nama_golongan); ?></option>
                                             <?php endif; ?>
                                         <?php endforeach ; ?>
                                     </select>
@@ -134,7 +134,7 @@
             <!-- </div> -->
             <div class="card-footer text-right">
                 <button type="submit" class="mt-1 ml-3 mr-1 btn btn-success"> <i class="fas fa-paper-plane"></i> Simpan</button>
-                <a href="<?= base_url('master/pegawaip'); ?>" class="mt-1 btn btn-secondary">Batal</a>
+                <a href="<?= htmlentities(base_url('master/pegawaip')); ?>" class="mt-1 btn btn-secondary">Batal</a>
             </div>
         <!-- </div> -->
         </form>

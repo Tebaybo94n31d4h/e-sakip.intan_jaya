@@ -92,10 +92,10 @@ class ModelProcedure extends Model
     }
 
 	// menampilkan data bidang select
-	public function bidangSelectViews($opd_id)
+	public function bidangSelectViews($pegawai_id)
     {
 
-        $query = $this->db->query("CALL bidang_view_su('$opd_id')");
+        $query = $this->db->query("CALL bidang_view('$pegawai_id')");
         $results = $query->getResult();
         return $results;
     }
@@ -130,10 +130,10 @@ class ModelProcedure extends Model
     }
 
 	// ambil data sub bidang untuk ditampilkan pada select option
-	public function subbidangSelectView($bidang_id)
+	public function subbidangSelectView($b_id)
     {
 
-        $query = $this->db->query("CALL sub_bidang_view('$bidang_id')");
+        $query = $this->db->query("CALL sub_bidang_view('$b_id')");
         $results = $query->getResult();
         return $results;
     }
@@ -242,6 +242,12 @@ class ModelProcedure extends Model
         $results = $query->getResult();
         return $results;
 	}
+	public function superuserOpdget($opdIDPegawai)
+	{
+		$query = $this->db->query("CALL opd_view_dtl('$opdIDPegawai')");
+        $results = $query->getRow();
+        return $results;
+	}
 	//query untuk menampilkan opd
 	public function superuserOpdpegawais()
 	{
@@ -304,6 +310,13 @@ class ModelProcedure extends Model
 		$query = $this->db->query("CALL pegawai_view_su");
 		$results = $query->getResult();
 		return $results;
+	}
+
+    public function bypegawaidtl($id)
+	{
+		$query = $this->db->query("CALL pegawai_view_dtl('$id')");
+        $results = $query->getRow();
+        return $results;
 	}
 
 	public function editpegawaiopdsuper($pegawai_id)

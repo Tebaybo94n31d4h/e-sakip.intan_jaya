@@ -3,15 +3,15 @@
 <?= $this->section('content'); ?>
 
 <div class="section-header">
-    <h1><?= $subtitle; ?></h1>
+    <h1><?= htmlentities($subtitle); ?></h1>
     
     <div class="section-header-breadcrumb pr-2">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboard'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboard')); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
     <div class="section-header-back">
-        <form action="<?= base_url('master/subbidangs/' . $databidang->id); ?>" method="post">
+        <form action="<?= htmlentities(base_url('master/subbidangs/' . $databidang->id)); ?>" method="post">
             <button class="btn btn-primary">
                 <i class="fas fa-arrow-left"></i> 
             </button>
@@ -22,7 +22,7 @@
 
 <div class="section-body" style="font-size: 12px;">
     <div class="card">
-        <form action="<?= base_url('master/proccesstambahsubbidangs/' . $databidang->id); ?>" method="POST" id="tab-content-1">
+        <form action="<?= htmlentities(base_url('master/proccesstambahsubbidangs/' . $databidang->id)); ?>" method="POST" id="tab-content-1">
             
         
             <div class="card-header">
@@ -57,7 +57,7 @@
 
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-success"> <i class="fas fa-paper-plane"></i> Simpan</button>
-                <a href="<?= base_url('master/subbidangs/' . $databidang->id); ?>" class="ml-1 btn btn-secondary">Batal</a>
+                <a href="<?= htmlentities(base_url('master/subbidangs/' . $databidang->id)); ?>" class="ml-1 btn btn-secondary">Batal</a>
             </div>
 
         </form>

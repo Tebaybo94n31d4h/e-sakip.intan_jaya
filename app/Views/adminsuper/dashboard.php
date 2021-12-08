@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="<?= base_url(); ?>/aos-master/dist/aos.css">
 <link rel="stylesheet" href="<?= base_url(); ?>/switalert/animate.min.css">
 
+<div id="masuk" data-masuk="<?= session()->getFlashdata('masuk');  ?>"></div>
+
       <div class="section-header">
           <h1>Dashboard</h1>
       </div>

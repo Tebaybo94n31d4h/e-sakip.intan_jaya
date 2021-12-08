@@ -71,9 +71,34 @@ class Periode extends BaseController
     {
         if (session()->logged_in) {
             if (session()->hakakses == 1 || 2) {
-                $usr_input_id = session()->id;
-                $tahun_awal = $this->request->getVar('tahun_awal');
-                $tahun_akhir = $this->request->getVar('tahun_akhir');
+                // cek validasi
+                if (!$this->validate([
+                    'tahun_awal' => [
+                        'label' => 'Tahun awal',
+                        'rules' => 'required|numeric',
+                        'errors' => [
+                            'required' => '{field} wajib diisi',
+                            'numeric' => '{field} wajib diisi angka'
+                        ]
+                    ],
+
+                    'tahun_akhir' => [
+                        'label' => 'Tahun akhir',
+                        'rules' => 'required|numeric',
+                        'errors' => [
+                            'required' => '{field} wajib diisi',
+                            'numeric' => '{field} wajib diisi angka'
+                        ]
+                    ],
+        
+                ])) {
+                    // jika validasi gagal
+                    $validation =  \Config\Services::validation();
+                    return redirect()->to('/periode/f_periodep')->withInput()->with('validation', $validation);
+                }
+                $usr_input_id = htmlspecialchars(session()->id);
+                $tahun_awal = htmlspecialchars($this->request->getVar('tahun_awal'));
+                $tahun_akhir = htmlspecialchars($this->request->getVar('tahun_akhir'));
                 // dd($usr_input_id,$tahun_awal,$tahun_akhir);
                 $simpan = $this->db->query("CALL periode_insert($usr_input_id,'$tahun_awal','$tahun_akhir')")->getRow();
                 if ($simpan->n == 81) {

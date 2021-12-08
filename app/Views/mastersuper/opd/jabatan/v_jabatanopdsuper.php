@@ -11,22 +11,24 @@
 
 <div class="section-header">
     <div class="section-header-back">
-        <form action="<?= base_url('master/opds'); ?>" method="post">
+        <form action="<?= htmlentities(base_url('master/opds')); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn btn-primary btn-icon icon-left">
                 <i class="fas fa-arrow-left"></i> 
             </button>
         </form>
     </div>
-    <h1><?= $subtitle; ?></h1>
+    <h1><?= htmlentities($subtitle); ?></h1>
     
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboard'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboard')); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
     
     <div class="section-header-button">
-        <form action="<?= base_url('master/f_jabatans/' . $dataopd['id']); ?>" method="post">
+        <form action="<?= htmlentities(base_url('master/f_jabatans/' . $dataopd['id'])); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn btn-primary btn-icon icon-left">
                 <i class="fas fa-plus"></i>
                 <span>Tambah Baru</span>
@@ -45,23 +47,23 @@
             <div class="card-header">
                 <h4>Data OPD</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <div class="row">
                     <table>
                         <tr>
-                            <td>Kode OPD : <?= $dataopd['kode']; ?> </td>
-                            <td>Nama OPD : <?= $dataopd['nama_opd']; ?></td>
+                            <td>Kode OPD : <?= htmlentities($dataopd['kode']); ?> </td>
+                            <td>Nama OPD : <?= htmlentities($dataopd['nama_opd']); ?></td>
                             <td>Kode Pos : <?= $dataopd['kode_pos']; ?></td>
                         </tr>
                         <tr>
-                            <td>Nomor Unit Kerja : <?= $dataopd['nomor_unit_kerja']; ?> </td>
-                            <td>Alamat : <?= $dataopd['alamat_opd']; ?></td>
-                            <td>Telepon : <?= $dataopd['telepon']; ?></td>
+                            <td>Nomor Unit Kerja : <?= htmlentities($dataopd['nomor_unit_kerja']); ?> </td>
+                            <td>Alamat : <?= htmlentities($dataopd['alamat_opd']); ?></td>
+                            <td>Telepon : <?= htmlentities($dataopd['telepon']); ?></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>Email : <?= $dataopd['email']; ?></td>
-                            <td>Fax : <?= $dataopd['fax']; ?></td>
+                            <td>Email : <?= htmlentities($dataopd['email']); ?></td>
+                            <td>Fax : <?= htmlentities($dataopd['fax']); ?></td>
                         </tr>
                     </table>
                 </div>
@@ -90,20 +92,22 @@
                             <?php $no = 1; ?>
                             <?php foreach($datajabatan as $dj) : ?>
                             <tr>
-                                <td><?= $no; ?></td>
-                                <td><?= $dj->kode; ?></td>
-                                <td><?= $dj->nama_jabatan; ?></td>
-                                <td><?= $dj->nama_bidang; ?></td>
-                                <td><?= $dj->nama_sub_bidang; ?></td>
+                                <td><?= htmlentities($no); ?></td>
+                                <td><?= htmlentities($dj->kode); ?></td>
+                                <td><?= htmlentities($dj->nama_jabatan); ?></td>
+                                <td><?= htmlentities($dj->nama_bidang); ?></td>
+                                <td><?= htmlentities($dj->nama_sub_bidang); ?></td>
                                 <td class="text-right">
-                                    <form action="<?= base_url('master/f_editjabatans/' . $dj->id . '/edit'); ?>" method="post">
-                                        <button style="cursor: pointer;" class="btn btn-sm btn-success" data-toggle="tooltip" title="EDIT JABATAN : <?= $dj->nama_jabatan; ?>">
+                                    <form action="<?= htmlentities(base_url('master/f_editjabatans/' . $dj->id . '/edit')); ?>" method="post">
+                                        <?= csrf_field() ;?>
+                                        <input type="hidden" name="_method" value="PUT" />
+                                        <button style="cursor: pointer;" class="btn btn-sm btn-success" data-toggle="tooltip" title="Edit jabatan : <?= htmlentities($dj->nama_jabatan); ?>">
                                             <i class="fas fa-pencil-alt"></i>
                                         </button>
                                     </form>
                                 </td>
                                 <td>
-                                    <a href="<?= base_url('master/hapusjabatans/' . $dj->id); ?>" style="cursor: pointer;" class="btn btn-sm btn-danger btn-hapus" data-toggle="tooltip" title="DELETE BIDANG : <?= $dj->nama_bidang; ?>">
+                                    <a href="<?= htmlentities(base_url('master/hapusjabatans/' . $dj->id)); ?>" style="cursor: pointer;" class="btn btn-sm btn-danger btn-hapus" data-toggle="tooltip" title="Hapus jabatan : <?= htmlentities($dj->nama_jabatan); ?>">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>

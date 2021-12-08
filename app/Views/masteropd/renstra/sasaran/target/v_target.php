@@ -10,15 +10,16 @@
 
 <div class="section-header">
 
-    <h1><?= $subtitle; ?></h1>
+    <h1><?= htmlentities($subtitle); ?></h1>
 
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboardo'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboardo')); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
     <div class="section-header-button">
-        <form action="<?= base_url('renstra/f_targetindikatorsasaran'); ?>" method="post">
+        <form action="<?= htmlentities(base_url('renstra/f_targetindikatorsasaran')); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn btn-primary">
                 <i class="fas fa-plus"></i>
                 <span>Tambah Baru</span>
@@ -32,7 +33,7 @@
     <p class="section-lead">
         Informasi tentang data target indikator sasaran dihalaman ini.
     </p>
-    <div class="col-sm-12">
+    <div class="col-12 col-sm-12 col-lg-12">
         <div class="card card-primary">
             <!-- <div class="card-header">
                 <h4></?= $subtitle2; ?></h4>
@@ -52,11 +53,11 @@
                         <?php $no = 1; ?>
                         <?php foreach ($procedure as $p) : ?>
                             <tr>
-                                <td class="text-center"><?= $no; ?></td>
-                                <td><?= $p->indikator_sasaran_opd; ?></td>
-                                <td><?= $p->satuan; ?></td>
-                                <td><?= $p->target; ?></td>
-                                <td><?= $p->tahun; ?></td>
+                                <td class="text-center"><?= htmlentities($no); ?></td>
+                                <td><?= htmlentities($p->indikator_sasaran_opd); ?></td>
+                                <td><?= htmlentities($p->satuan); ?></td>
+                                <td><?= htmlentities($p->target); ?></td>
+                                <td><?= htmlentities($p->tahun); ?></td>
                             </tr>
                             <?php $no++; ?>
                         <?php endforeach; ?>

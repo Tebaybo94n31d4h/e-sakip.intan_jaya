@@ -13,6 +13,7 @@
 
     <div class="section-header-back">
         <form action="<?= base_url('renstra/indikatorprogramopd/' . session()->IDProgram); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn btn-primary">
                 <i class="fas fa-arrow-left"></i>
             </button>
@@ -27,12 +28,12 @@
             <div class="card-header">
                 <h4 class="card-title">Form Tambah</h4>
             </div>
-            <div class="col-sm-8 m-auto">
+            <div class="col-12 col-sm-12 col-lg-12 m-auto">
                 <div class="mb-3 card">
                     <div class="card-body table-responsive">
                         <?= csrf_field(); ?>
                         <div class="row mb-3">
-                            <div class="col-sm-3"><label for="prgrm_opd_id">Program Opd</label></div>
+                            <div class="col-sm-3"><label for="prgrm_opd_id">Program <strong class="text-danger"><sup>*</sup></strong>  </label></div>
                             <div class="col-sm-9">
                                 <select class="form-control <?= ($validation->hasError('prgrm_opd_id')) ? 'is-invalid' : ''; ?>" name="prgrm_opd_id" id="prgrm_opd_id">
                                     <option value="">-- Pilih Indikator Sasaran Opd --</option>
@@ -47,9 +48,9 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-sm-3"><label for="indktr_prgrm_opd">Indikator Program Opd <strong class="text-danger"><sup>*</sup></strong> </label></div>
+                            <div class="col-sm-3"><label for="indktr_prgrm_opd">Indikator Program <strong class="text-danger"><sup>*</sup></strong> </label></div>
                             <div class="col sm-9">
-                                <textarea name="indktr_prgrm_opd" id="indktr_prgrm_opd" rows="5" class="form-control <?= ($validation->hasError('indktr_prgrm_opd')) ? 'is-invalid' : ''; ?>"></textarea>
+                                <textarea name="indktr_prgrm_opd" id="indktr_prgrm_opd" class="form-control <?= ($validation->hasError('indktr_prgrm_opd')) ? 'is-invalid' : ''; ?>"></textarea>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('indktr_prgrm_opd'); ?>
                                 </div>

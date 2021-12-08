@@ -12,7 +12,7 @@
     <h1><?= $subtitle; ?></h1>
     
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboard'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboards'); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
         <div class="breadcrumb-item"><?= $subtitle; ?> </div>
     </div>
@@ -32,7 +32,7 @@
         Informasi tentang data setting dihalaman ini.
     </p>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-12 col-md-12 col-lg-3">
 
             <div class="card card-primary">
                 <div class="card-header">
@@ -61,7 +61,7 @@
             
 
         </div>
-        <div class="col-sm-4" id="tampil-akses">
+        <div class="col-12 col-md-12 col-lg-4" id="tampil-akses">
             <div class="card card-primary">
                 <div class="card-header">
                     <h4>Control Nama Hak Akses</h4>
@@ -82,7 +82,10 @@
                                         }
                                         .nama_hak_akses:hover{
                                             background-color: rgba(90, 69, 250, 0.867);
-                                            color: yellow;
+                                            border: 1px solid yellow;
+                                            color: white;
+
+                                            box-shadow: 3px 3px 3px 1px gainsboro;   
                                         }
                                     </style>
                                     <button type="button" style="cursor: pointer;" onclick="ambildata(<?= $ha->id ;?>)" class="nama_hak_akses">
@@ -104,7 +107,7 @@
                 </div> -->
             </div>
         </div>
-        <div class="col" id="modul-tampil">
+        <div class="col-12 col-md-12 col-lg-5" id="modul-tampil">
             <div class="card card-primary">
                 <!-- <div class="card-header">
                     <h4>Data Hak Akses</h4>
@@ -140,7 +143,7 @@
                 </div>
             </div>
         </div>
-        <div class="col" id="tampil-user">
+        <div class="col-12 col-md-12 col-lg-9" id="tampil-user">
             <div class="card card-primary">
                 <div class="card-header">
                     <h4>Control User</h4>
@@ -237,7 +240,7 @@
                     </div>
                 </div>
             <div class="row">
-                <div class="card col">
+                <div class="card col-12 col-sm-12 col-lg-6">
                     <h6 class="text-primary">Data User</h6>
                     <div class="position-relative form-group">
                         <label for="opd_id">Nama OPD</label>
@@ -284,10 +287,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="card col">
+                <div class="card col-12 col-sm-12 col-lg-6">
                     <h6 class="text-primary">Data Akun</h6>
                     <div class="row">
-                        <div class="position-relative form-group col">
+                        <div class="position-relative form-group col-12 col-sm-12 col-lg-12">
                             <label for="usr">Username</label>
                             <input name="usr" id="usr" type="text" value="<?= old('usr') ?>" class="form-control <?= ($validation->hasError('usr')) ? 'is-invalid' : ''; ?>">
                             <div class="invalid-feedback">
@@ -296,14 +299,14 @@
                         </div>
                         <div class="card">
                             <div class="row">
-                                <div class="position-relative form-group col">
+                                <div class="position-relative form-group col-12 col-sm-12 col-lg-6">
                                     <label for="psswd">Password</label>
                                     <input name="psswd" id="psswd" type="password" class="form-control <?= ($validation->hasError('psswd')) ? 'is-invalid' : ''; ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('psswd'); ?>
                                     </div>
                                 </div>
-                                <div class="position-relative form-group col">
+                                <div class="position-relative form-group col-12 col-sm-12 col-lg-6">
                                     <label for="psswd2">Konfirmasi Password</label>
                                     <input name="psswd2" id="psswd2" type="password" class="form-control <?= ($validation->hasError('psswd2')) ? 'is-invalid' : ''; ?>">
                                     <div class="invalid-feedback">

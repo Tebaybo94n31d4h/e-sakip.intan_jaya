@@ -11,16 +11,17 @@
 
 <div class="section-header">
     
-    <h1><?= $subtitle; ?></h1>
+    <h1><?= htmlentities($subtitle); ?></h1>
     
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboardp'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboardp')); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
     
     <div class="section-header-button">
-        <form action="<?= base_url('master/f_jabatanp'); ?>" method="post">
+        <form action="<?= htmlentities(base_url('master/f_jabatanp')); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn mt-2 mb-2 btn-primary">
                 <i class="fas fa-plus"></i>
                 <span>Tambah Baru</span>
@@ -54,18 +55,20 @@
                             <?php $no = 1; ?>
                             <?php foreach($datajabatan as $dj) : ?>
                             <tr>
-                                <td><?= $no; ?></td>
-                                <td><?= $dj->kode; ?></td>
-                                <td><?= $dj->nama_jabatan; ?></td>
+                                <td><?= htmlentities($no); ?></td>
+                                <td><?= htmlentities($dj->kode); ?></td>
+                                <td><?= htmlentities($dj->nama_jabatan); ?></td>
                                 <td class="text-right">
-                                    <form action="<?= base_url('master/f_editjabatans/' . $dj->id . '/edit'); ?>" method="post">
-                                        <button style="cursor: pointer;" class="btn btn-sm btn-success" data-toggle="tooltip" title="EDIT JABATAN : <?= $dj->nama_jabatan; ?>">
+                                    <form action="<?= htmlentities(base_url('master/f_editjabatanp/' . $dj->id . '/edit')); ?>" method="post">
+                                        <?= csrf_field() ;?>
+                                        <input type="hidden" name="_method" value="PUT" />
+                                        <button style="cursor: pointer;" class="btn btn-sm btn-success" data-toggle="tooltip" title="Edit jabatan : <?= htmlentities($dj->nama_jabatan); ?>">
                                             <i class="fas fa-pencil-alt"></i>
                                         </button>
                                     </form>
                                 </td>
                                 <td>
-                                    <a href="" data-id="<?= $dj->id; ?>" style="cursor: pointer;" class="btn btn-sm btn-danger btn-hapus" data-toggle="tooltip" title="DELETE JABATAN : <?= $dj->nama_jabatan; ?>">
+                                    <a href="" data-id="<?= htmlentities($dj->id); ?>" style="cursor: pointer;" class="btn btn-sm btn-danger btn-hapus" data-toggle="tooltip" title="Hapus jabatan : <?= htmlentities($dj->nama_jabatan); ?>">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>

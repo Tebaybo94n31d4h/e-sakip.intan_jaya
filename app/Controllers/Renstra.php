@@ -14,7 +14,7 @@ use phpDocumentor\Reflection\Types\This;
 class Renstra extends BaseController
 {
     // tujuan
-    // --------------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------
 
     public function tujuano()
     {
@@ -83,7 +83,7 @@ class Renstra extends BaseController
                 // cek validasi
                 if (!$this->validate([
                     'opd_id' => [
-                        'label' => 'OPD',
+                        'label' => 'Opd',
                         'rules' => 'required',
                         'errors' => [
                             'required' => '{field} wajib dipilih'
@@ -102,9 +102,9 @@ class Renstra extends BaseController
                     $validation =  \Config\Services::validation();
                     return redirect()->to('renstra/f_tujuano')->withInput()->with('validation', $validation);
                 }
-                $usr_input_id = session()->id;
-                $opd_id = $this->request->getVar('opd_id');
-                $tj_opd = $this->request->getVar('tj_opd');
+                $usr_input_id = htmlspecialchars(session()->id);
+                $opd_id = htmlspecialchars($this->request->getVar('opd_id'));
+                $tj_opd = htmlspecialchars($this->request->getVar('tj_opd'));
                 // dd($usr_input_id,$opd_id,$tj_opd);
                 $this->db->query("CALL tujuan_opd_insert($usr_input_id,'$opd_id','$tj_opd')")->getRow();
 
@@ -125,9 +125,11 @@ class Renstra extends BaseController
         }
     }
 
-    // -----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------
+    
+
     // sasaran
-    // --------------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------
     public function sasarano()
     {
         if (session()->logged_in) {
@@ -193,7 +195,7 @@ class Renstra extends BaseController
                 // cek validasi
                 if (!$this->validate([
                     'tjn_opd_id' => [
-                        'label' => 'Tujuan Opd',
+                        'label' => 'Tujuan',
                         'rules' => 'required',
                         'errors' => [
                             'required' => '{field} wajib dipilih'
@@ -201,7 +203,7 @@ class Renstra extends BaseController
                     ],
 
                     'ssrn_opd' => [
-                        'label' => 'Sasaran Opd',
+                        'label' => 'Sasaran',
                         'rules' => 'required',
                         'errors' => [
                             'required' => '{field} wajib diisi'
@@ -213,9 +215,9 @@ class Renstra extends BaseController
                     $validation =  \Config\Services::validation();
                     return redirect()->to('renstra/f_sasarano')->withInput()->with('validation', $validation);
                 }
-                $usr_input_id = session()->id;
-                $ssrn_opd = $this->request->getVar('ssrn_opd');
-                $tjn_opd_id = $this->request->getVar('tjn_opd_id');
+                $usr_input_id = htmlspecialchars(session()->id);
+                $ssrn_opd = htmlspecialchars($this->request->getVar('ssrn_opd'));
+                $tjn_opd_id = htmlspecialchars($this->request->getVar('tjn_opd_id'));
                 // dd($usr_input_id, $ssrn_opd, $tjn_opd_id);
                 $this->db->query("CALL sasaran_opd_insert('$usr_input_id','$ssrn_opd','$tjn_opd_id')")->getRow();
 
@@ -236,9 +238,11 @@ class Renstra extends BaseController
         }
     }
 
-    // -----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------
+    
+
     // Indikator Sasaran Program
-    // --------------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------
     public function indikatorsasaranopd()
     {
         if (session()->logged_in) {
@@ -293,7 +297,7 @@ class Renstra extends BaseController
         }
     }
 
-    public function proccesstambahsasaranopdo()
+    public function proccesstambahindikatorsasaran()
     {
         if (session()->logged_in) {
             $procedure = new ModelProcedureopd();
@@ -302,23 +306,31 @@ class Renstra extends BaseController
             if ($akses[1]->is_insert == 1) {
                 // cek validasi
                 if (!$this->validate([
+
                     'indktr_ssrn_opd' => [
-                        'label' => 'Sasaran Opd',
+                        'label' => 'Indikator sasaran',
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => '{field} wajib dipilih'
+                        ]
+                    ],
+                    'ssrn_opd_id' => [
+                        'label' => 'Sasaran',
                         'rules' => 'required',
                         'errors' => [
                             'required' => '{field} wajib diisi'
                         ]
-                    ]
+                    ],
 
                 ])) {
                     // jika validasi gagal
                     $validation =  \Config\Services::validation();
-                    return redirect()->to('renstra/f_sasarano')->withInput()->with('validation', $validation);
+                    return redirect()->to('renstra/f_indikatorsasaranopdo')->withInput()->with('validation', $validation);
                 }
-                $usr_input_id = session()->id;
-                $ssrn_opd_id = $this->request->getVar('ssrn_opd_id');
-                $indktr_ssrn_opd = $this->request->getVar('indktr_ssrn_opd');
-                if ($this->request->getVar('aktif') == 'on') {
+                $usr_input_id = htmlspecialchars(session()->id);
+                $ssrn_opd_id = htmlspecialchars($this->request->getVar('ssrn_opd_id'));
+                $indktr_ssrn_opd = htmlspecialchars($this->request->getVar('indktr_ssrn_opd'));
+                if (htmlspecialchars($this->request->getVar('aktif')) == 'on') {
                     $iku = 1;
                 } else {
                     $iku = 0;
@@ -335,9 +347,11 @@ class Renstra extends BaseController
         }
     }
 
-    // -----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------
+    
+
     // Target Indikator Sasaran Program
-    // --------------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------
 
     public function targetindikatorsasaran()
     {
@@ -410,7 +424,7 @@ class Renstra extends BaseController
                 // cek validasi
                 if (!$this->validate([
                     'indktr_ssrn_opd_id' => [
-                        'label' => 'Indikator Sasaran Opd',
+                        'label' => 'Indikator sasaran',
                         'rules' => 'required',
                         'errors' => [
                             'required' => '{field} wajib dipilih'
@@ -444,18 +458,13 @@ class Renstra extends BaseController
                     $validation =  \Config\Services::validation();
                     return redirect()->to('renstra/f_targetindikatorsasaran')->withInput()->with('validation', $validation);
                 }
-                $usr_input_id = session()->id;
-                $indktr_ssrn_opd_id = $this->request->getVar('indktr_ssrn_opd_id');
-                $stn_id = $this->request->getVar('stn_id');
-                $sb_prd = $this->request->getVar('sb_prd');
-                $trgt = $this->request->getVar('trgt');
-                // dd(
-                //     $usr_input_id,
-                //     $indktr_ssrn_opd_id,
-                //     $stn_id,
-                //     $sb_prd,
-                //     $trgt
-                // );
+                $usr_input_id = htmlspecialchars(session()->id);
+                $indktr_ssrn_opd_id = htmlspecialchars($this->request->getVar('indktr_ssrn_opd_id'));
+                $stn_id = htmlspecialchars($this->request->getVar('stn_id'));
+                $sb_prd = htmlspecialchars($this->request->getVar('sb_prd'));
+                $trgt = htmlspecialchars($this->request->getVar('trgt'));
+                
+                
                 $this->db->query("CALL target_indikator_sasaran_opd('$usr_input_id','$indktr_ssrn_opd_id','$stn_id','$sb_prd','$trgt')")->getRow();
 
                 session()->setFlashdata('berhasil', 'data berhasil ditambahkan !');
@@ -467,9 +476,11 @@ class Renstra extends BaseController
         }
     }
 
-    // -----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------
+
+
     // Program
-    // --------------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------
     public function programo()
     {
         if (session()->logged_in) {
@@ -535,7 +546,7 @@ class Renstra extends BaseController
                 // cek validasi
                 if (!$this->validate([
                     'indktr_ssrn_opd_id' => [
-                        'label' => 'Indikator Sasaran Opd',
+                        'label' => 'Indikator Sasaran',
                         'rules' => 'required',
                         'errors' => [
                             'required' => '{field} wajib dipilih'
@@ -543,7 +554,7 @@ class Renstra extends BaseController
                     ],
 
                     'nm_prgrm_opd' => [
-                        'label' => 'Sasaran Opd',
+                        'label' => 'Nama program',
                         'rules' => 'required',
                         'errors' => [
                             'required' => '{field} wajib diisi'
@@ -554,9 +565,9 @@ class Renstra extends BaseController
                     $validation =  \Config\Services::validation();
                     return redirect()->to('renstra/f_programo')->withInput()->with('validation', $validation);
                 }
-                $usr_input_id = session()->id;
-                $indktr_ssrn_opd_id = $this->request->getVar('indktr_ssrn_opd_id');
-                $nm_prgrm_opd = $this->request->getVar('nm_prgrm_opd');
+                $usr_input_id = htmlspecialchars(session()->id);
+                $indktr_ssrn_opd_id = htmlspecialchars($this->request->getVar('indktr_ssrn_opd_id'));
+                $nm_prgrm_opd = htmlspecialchars($this->request->getVar('nm_prgrm_opd'));
                 // dd($usr_input_id, $indktr_ssrn_opd_id, $nm_prgrm_opd);
                 $this->db->query("CALL program_opd_insert('$usr_input_id','$indktr_ssrn_opd_id','$nm_prgrm_opd')")->getRow();
 
@@ -569,9 +580,11 @@ class Renstra extends BaseController
         }
     }
 
-    // -----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------
+
+
     // indikator program
-    // --------------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------
 
     public function indikatorprogramopd()
     {
@@ -637,14 +650,14 @@ class Renstra extends BaseController
                 // cek validasi
                 if (!$this->validate([
                     'prgrm_opd_id' => [
-                        'label' => 'Program opd',
+                        'label' => 'Program',
                         'rules' => 'required',
                         'errors' => [
                             'required' => '{field} wajib diisi'
                         ]
                     ],
                     'indktr_prgrm_opd' => [
-                        'label' => 'Indikator program opd',
+                        'label' => 'Indikator program',
                         'rules' => 'required',
                         'errors' => [
                             'required' => '{field} wajib diisi'
@@ -655,10 +668,9 @@ class Renstra extends BaseController
                     $validation =  \Config\Services::validation();
                     return redirect()->to('renstra/f_indikatorprogramopd/' . session()->IDProgram)->withInput()->with('validation', $validation);
                 }
-                $usr_input_id = session()->id;
-                $prgrm_opd_id = $this->request->getVar('prgrm_opd_id');
-                $indktr_prgrm_opd = $this->request->getVar('indktr_prgrm_opd');
-                // dd($usr_input_id, $prgrm_opd_id, $indktr_prgrm_opd);
+                $usr_input_id = htmlspecialchars(session()->id);
+                $prgrm_opd_id = htmlspecialchars($this->request->getVar('prgrm_opd_id'));
+                $indktr_prgrm_opd = htmlspecialchars($this->request->getVar('indktr_prgrm_opd'));
                 $this->db->query("CALL indikator_program_opd_insert('$usr_input_id','$prgrm_opd_id','$indktr_prgrm_opd')")->getRow();
 
                 session()->setFlashdata('berhasil', 'data berhasil ditambahkan !');
@@ -670,9 +682,11 @@ class Renstra extends BaseController
         }
     }
 
-    // -----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------
+    
+
     // Target indikator program
-    // --------------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------
     public function targetindikatorprogram()
     {
         if (session()->logged_in) {
@@ -740,7 +754,7 @@ class Renstra extends BaseController
                 // cek validasi
                 if (!$this->validate([
                     'indktr_prgrm_opd_id' => [
-                        'label' => 'Indikator program opd',
+                        'label' => 'Indikator program',
                         'rules' => 'required',
                         'errors' => [
                             'required' => '{field} wajib dipilih'
@@ -781,20 +795,14 @@ class Renstra extends BaseController
                     $validation =  \Config\Services::validation();
                     return redirect()->to('renstra/f_targetindikatorprogram')->withInput()->with('validation', $validation);
                 }
-                $usr_input_id = session()->id;
-                $indktr_prgrm_opd_id = $this->request->getVar('indktr_prgrm_opd_id');
-                $stn_id = $this->request->getVar('stn_id');
-                $sb_prd_id = $this->request->getVar('sb_prd_id');
-                $trgt_indktr_prgrm_opd = $this->request->getVar('trgt_indktr_prgrm_opd');
-                $anggrn = $this->request->getVar('anggrn');
-                // dd(
-                //     $usr_input_id,
-                //     $indktr_prgrm_opd_id,
-                //     $stn_id,
-                //     $sb_prd_id,
-                //     $trgt_indktr_prgrm_opd,
-                //     $anggrn
-                // );
+                // mengambil data dari form inputan
+                $usr_input_id = htmlspecialchars(session()->id);
+                $indktr_prgrm_opd_id = htmlspecialchars($this->request->getVar('indktr_prgrm_opd_id'));
+                $stn_id = htmlspecialchars($this->request->getVar('stn_id'));
+                $sb_prd_id = htmlspecialchars($this->request->getVar('sb_prd_id'));
+                $trgt_indktr_prgrm_opd = htmlspecialchars($this->request->getVar('trgt_indktr_prgrm_opd'));
+                $anggrn = htmlspecialchars($this->request->getVar('anggrn'));
+
                 $this->db->query("CALL target_indikator_program_opd_insert('$usr_input_id','$indktr_prgrm_opd_id','$trgt_indktr_prgrm_opd','$stn_id','$sb_prd_id','$anggrn')")->getRow();
 
                 session()->setFlashdata('berhasil', 'data berhasil ditambahkan !');
@@ -805,5 +813,5 @@ class Renstra extends BaseController
             }
         }
     }
-    // =============================================================================================================
+// --------------------------------------------------------------------------------------------
 }

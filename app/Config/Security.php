@@ -72,7 +72,7 @@ class Security extends BaseConfig
      *
      * @var bool
      */
-    public $redirect = true;
+    public $redirect = false;
 
     /**
      * --------------------------------------------------------------------------
@@ -92,4 +92,5 @@ class Security extends BaseConfig
      * @deprecated
      */
     public $samesite = 'Lax';
+    public $csrfProtection = 'session';
 }

@@ -19,6 +19,7 @@
     </div>
     <div class="section-header-button">
         <form action="<?= base_url('renstra/f_targetindikatorprogram'); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn btn-primary">
                 <i class="fas fa-plus"></i>
                 <span>Tambah Baru</span>
@@ -32,7 +33,7 @@
     <p class="section-lead">
         Informasi tentang data target indikator program opd dihalaman ini.
     </p>
-    <div class="col-sm-12">
+    <div class="col-12 col-sm-12 col-lg-12">
         <div class="card card-primary">
             <!-- <div class="card-header">
                 <h4></?= $subtitle2; ?></h4>
@@ -53,16 +54,26 @@
                         <?php $no = 1; ?>
                         <?php foreach ($procedure as $p) : ?>
                             <tr>
-                                <td><?= $no; ?></td>
-                                <td><?= $p->indikator_program_id; ?></td>
-                                <td><?= $p->target_indikator_program_opd; ?></td>
-                                <td><?= $p->satuan_id; ?></td>
-                                <td><?= $p->sub_periode_id; ?></td>
-                                <td><?= $p->anggaran; ?></td>
+                                <td><?= htmlentities($no); ?></td>
+                                <td><?= htmlentities($p->indikator_program_id); ?></td>
+                                <td><?= htmlentities($p->target_indikator_program_opd); ?></td>
+                                <td><?= htmlentities($p->satuan_id); ?></td>
+                                <td><?= htmlentities($p->sub_periode_id); ?></td>
+                                <td><?= htmlentities($p->anggaran); ?></td>
                             </tr>
                             <?php $no++; ?>
                         <?php endforeach; ?>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>No</th>
+                            <th>Indikator Program OPD</th>
+                            <th>Target Indikator Program OPD</th>
+                            <th>Satuan</th>
+                            <th>Sub Periode</th>
+                            <th>Anggaran</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

@@ -61,7 +61,7 @@
                 </div>
                     <div class="position-relative form-group">
                         <label for="nama_usr">NAMA USER</label>
-                        <input name="nama_usr" id="nama_usr" type="text" class="form-control <?= ($validation->hasError('nama_usr')) ? 'is-invalid' : ''; ?>">
+                        <input name="nama_usr" value="<?= old('nama_usr') ?>" id="nama_usr" type="text" class="form-control <?= ($validation->hasError('nama_usr')) ? 'is-invalid' : ''; ?>">
                         <div class="invalid-feedback">
                             <?= $validation->getError('nama_usr'); ?>
                         </div>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="position-relative form-group">
                         <label for="usr">USERNAME</label>
-                        <input name="usr" id="usr" type="text" class="form-control <?= ($validation->hasError('usr')) ? 'is-invalid' : ''; ?>">
+                        <input name="usr" id="usr" value="<?= old('usr') ?>" type="text" class="form-control <?= ($validation->hasError('usr')) ? 'is-invalid' : ''; ?>">
                         <div class="invalid-feedback">
                             <?= $validation->getError('usr'); ?>
                         </div>

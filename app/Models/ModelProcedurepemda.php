@@ -207,9 +207,9 @@ class ModelProcedurepemda extends Model
     }
 
 	//query untuk menampilkan pilihan jabatan
-	public function selectjabatansuper()
+	public function selectjabatansuper($p_input_id)
     {
-        $query = $this->db->query("SELECT * FROM jabatan");
+        $query = $this->db->query("CALL jabatan_view('$p_input_id')");
         $results = $query->getResult();
         return $results;
     }

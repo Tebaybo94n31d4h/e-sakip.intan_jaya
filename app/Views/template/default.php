@@ -3,35 +3,37 @@
 <head>
   <?= csrf_meta(); ?>
   <meta charset="UTF-8">
+  <meta name="keywords" content="administrator esakip intan jaya, administrator esakip intanjaya, administrator esakip intanjayakab">
+  <meta name="description" content="Login Administrator e-Sakip kabupaten Intan Jaya">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title><?= $judul_web; ?> &mdash; E-Sakip Intan Jaya</title>
+  <title><?= htmlentities($judul_web); ?> &mdash; e-SAKIP Intan Jaya</title>
   
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="<?= base_url(); ?>/template/node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?= base_url(); ?>/template/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
- <link rel="stylesheet" href="<?= base_url(); ?>/template/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= htmlentities(base_url('/template/node_modules/bootstrap/dist/css/bootstrap.min.css')); ?>">
+  <link rel="stylesheet" href="<?= htmlentities(base_url('/template/node_modules/@fortawesome/fontawesome-free/css/all.min.css')); ?>">
+ <link rel="stylesheet" href="<?= htmlentities(base_url('/template/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css')); ?>">
 
   <!-- animasi style sweet alert -->
-  <link rel="stylesheet" href="<?= base_url(); ?>/switalert/animate.min.css">
-  <link rel="stylesheet" href="<?= base_url(); ?>/switalert/sweetalert2.min.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>/bootstrap5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>/template/node_modules/ionicons201/css/ionicons.min.css">
+  <link rel="stylesheet" href="<?= htmlentities(base_url('/switalert/animate.min.css')); ?>">
+  <link rel="stylesheet" href="<?= htmlentities(base_url('/switalert/sweetalert2.min.css')); ?>">
+    <link rel="stylesheet" href="<?= htmlentities(base_url('/bootstrap5/css/bootstrap.min.css')); ?>">
+    <link rel="stylesheet" href="<?= htmlentities(base_url('/template/node_modules/ionicons201/css/ionicons.min.css')); ?>">
 
     <!-- CSS Libraries -->
-    <link rel="shortcut icon" href="<?= base_url(); ?>/assets/images/logo_intan_jaya.ico" type="image/x-icon">
-    <link rel="icon" href="<?= base_url(); ?>/assets/images/logo_intan_jaya.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= htmlentities(base_url('/assets/images/logo_intan_jaya.ico')); ?>" type="image/x-icon">
+    <link rel="icon" href="<?= htmlentities(base_url('/assets/images/logo_intan_jaya.ico')); ?>" type="image/x-icon">
     <link
       rel="stylesheet"
-      href="<?= base_url(); ?>/template/node_modules/bootstrap-social/bootstrap-social.css"
+      href="<?= htmlentities(base_url('/template/node_modules/bootstrap-social/bootstrap-social.css')); ?>"
     />
     <link
       rel="stylesheet"
-      href="<?= base_url(); ?>/template/node_modules/summernote/dist/summernote-bs4.css"
+      href="<?= htmlentities(base_url('/template/node_modules/summernote/dist/summernote-bs4.css')); ?>"
     />
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="<?= base_url(); ?>/template/assets/css/style.css">
-  <link rel="stylesheet" href="<?= base_url(); ?>/template/assets/css/components.css">
+  <link rel="stylesheet" href="<?= htmlentities(base_url('/template/assets/css/style.css')); ?>">
+  <link rel="stylesheet" href="<?= htmlentities(base_url('/template/assets/css/components.css')); ?>">
 
   <style>
     /* body{
@@ -52,21 +54,21 @@
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
                 <?php if ($get->hakakses == 0) : ?>
-                    <a href="<?= base_url('admin/dashboards'); ?>" class="text-white">E-SAKIP</a>
+                    <a href="<?= htmlentities(base_url('admin/dashboards')); ?>" class="text-white" style="font-size: 18px;">E-SAKIP</a>
                 <?php elseif ($get->hakakses == 1) : ?>
-                    <a href="<?= base_url('admin/dashboardp'); ?>" class="text-white">E-SAKIP</a>
+                    <a href="<?= htmlentities(base_url('admin/dashboardp')); ?>" class="text-white" style="font-size: 18px;">E-SAKIP</a>
                 <?php elseif ($get->hakakses == 2) : ?>
-                    <a href="<?= base_url('admin/dashboardo'); ?>" class="text-white" style="font-size: 18px;">E-SAKIP</a>
+                    <a href="<?= htmlentities(base_url('admin/dashboardo')); ?>" class="text-white" style="font-size: 18px;">E-SAKIP</a>
                 <?php endif; ?>
             <!-- <a href="index.html">E-Sakip</a> -->
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
                 <?php if ($get->hakakses == 0) : ?>
-                    <a href="<?= base_url('admin/dashboards'); ?>">ES</a>
+                    <a href="<?= htmlentities(base_url('admin/dashboards')); ?>">ES</a>
                 <?php elseif ($get->hakakses == 1) : ?>
-                    <a href="<?= base_url('admin/dashboardp'); ?>">ES</a>
+                    <a href="<?= htmlentities(base_url('admin/dashboardp')); ?>">ES</a>
                 <?php elseif ($get->hakakses == 2) : ?>
-                    <a href="<?= base_url('admi/dashboardo'); ?>">ES</a>
+                    <a href="<?= htmlentities(base_url('admi/dashboardo')); ?>">ES</a>
                 <?php endif; ?>
             <!-- <a href="index.html">ES</a> -->
           </div>
@@ -101,30 +103,28 @@
   </div>
 
   <!-- General JS Scripts -->
-  <script src="<?= base_url(); ?>/template/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="<?= base_url(); ?>/template/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="<?= base_url(); ?>/template/node_modules/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
+  <script src="<?= htmlentities(base_url('/template/node_modules/jquery/dist/jquery.min.js')); ?>"></script>
+  <script src="<?= htmlentities(base_url('/template/node_modules/bootstrap/dist/js/bootstrap.min.js')); ?>"></script>
+  <script src="<?= htmlentities(base_url('/template/node_modules/jquery.nicescroll/dist/jquery.nicescroll.min.js')); ?>"></script>
   <!-- <script src="</?= base_url(); ?>/template/node_modules/popper.js/dist/popper.min.js"></script> -->
-  <script src="<?= base_url(); ?>/template/node_modules/moment/min/moment.min.js"></script>
-  <script src="<?= base_url(); ?>/template/assets/js/stisla.js"></script>
+  <script src="<?= htmlentities(base_url('/template/node_modules/moment/min/moment.min.js')); ?>"></script>
+  <script src="<?= htmlentities(base_url('/template/assets/js/stisla.js')); ?>"></script>
 
-  <script src="<?= base_url(); ?>/template/node_modules/summernote/dist/summernote-bs4.js"></script>
+  <script src="<?= htmlentities(base_url('/template/node_modules/summernote/dist/summernote-bs4.js')); ?>"></script>
 
-  <script src="<?= base_url(); ?>/template/node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
-  <script src="<?= base_url(); ?>/template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="<?= htmlentities(base_url('/template/node_modules/datatables/media/js/jquery.dataTables.min.js')); ?>"></script>
+  <script src="<?= htmlentities(base_url('/template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js')); ?>"></script>
   <!-- Template JS File -->
-  <script src="<?= base_url(); ?>/template/assets/js/scripts.js"></script>
-  <script src="<?= base_url(); ?>/template/assets/js/custom.js"></script>
+  <script src="<?= htmlentities(base_url('/template/assets/js/scripts.js')); ?>"></script>
+  <script src="<?= htmlentities(base_url('/template/assets/js/custom.js')); ?>"></script>
 
   <!-- Page Specific JS File -->
-  <script src="<?= base_url(); ?>/template/assets/js/page/modules-datatables.js"></script>
-  <script src="<?= base_url(); ?>/bootstrap5/js/bootstrap.bundle.min.js"></script>
+  <script src="<?= htmlentities(base_url('/template/assets/js/page/modules-datatables.js')); ?>"></script>
+  <script src="<?= htmlentities(base_url('/bootstrap5/js/bootstrap.bundle.min.js')); ?>"></script>
 
   <!-- Page Specific JS File -->
 
-<!-- animasi sweet alert -->
-<!-- <script src="<?= base_url(); ?>/switalert/jquery.min.js"></script> -->
-<script src="<?= base_url(); ?>/switalert/sweetalert2.min.js"></script>
+<script src="<?= htmlentities(base_url('/switalert/sweetalert2.min.js')); ?>"></script>
 
 <script>
     var  berhasil = $('#berhasil').data('berhasil');

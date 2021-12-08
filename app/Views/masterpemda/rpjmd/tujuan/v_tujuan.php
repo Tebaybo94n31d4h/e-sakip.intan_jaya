@@ -9,15 +9,16 @@
 <div id="hapus" data-hapus="<?= session()->getFlashdata('hapus');  ?>"></div>
 
 <div class="section-header">
-    <h1><?= $subtitle; ?></h1>
+    <h1><?= htmlentities($subtitle); ?></h1>
     
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboardp'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboardp')); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
     <div class="section-header-button">
-        <form action="<?= base_url('rpjmd/f_tujuanp'); ?>" method="post">
+        <form action="<?= htmlentities(base_url('rpjmd/f_tujuanp')); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn btn-primary">
                 <i class="fas fa-plus"></i>
                 <span>Tambah Baru</span>
@@ -31,7 +32,7 @@
     <p class="section-lead">
         Informasi tentang data tujuan dihalaman ini.
     </p>
-    <div class="col-sm-12">
+    <div class="col-12 col-sm-12 col-lg-12">
         <div class="card card-primary">
                 <!-- <div class="card-header">
                     <h4></?= $subtitle2; ?></h4>
@@ -50,10 +51,10 @@
                             <?php $no = 1; ?>
                             <?php foreach($procedure as $p) : ?>
                             <tr>
-                                <td style="width: 1%;"><?= $no; ?></td>
-                                <td>No. Urut <?= $p->no_urut_visi; ?> : <?= $p->visi; ?></td>
-                                <td>No. Urut. <?= $p->no_urut_misi; ?> : <?= $p->misi; ?></td>
-                                <td>No. Urut. <?= $p->no_urut; ?> : <?= $p->tujuan; ?></td>
+                                <td style="width: 1%;"><?= htmlentities($no); ?></td>
+                                <td>No. Urut <?= htmlentities($p->no_urut_visi); ?> : <?= htmlentities($p->visi); ?></td>
+                                <td>No. Urut. <?= htmlentities($p->no_urut_misi); ?> : <?= htmlentities($p->misi); ?></td>
+                                <td>No. Urut. <?= htmlentities($p->no_urut); ?> : <?= htmlentities($p->tujuan); ?></td>
                             </tr>
                             <?php $no++; ?>
                             <?php endforeach; ?>

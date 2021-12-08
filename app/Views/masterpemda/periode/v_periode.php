@@ -9,15 +9,16 @@
 <div id="hapus" data-hapus="<?= session()->getFlashdata('hapus');  ?>"></div>
 
 <div class="section-header">
-    <h1><?= $subtitle; ?></h1>
+    <h1><?= htmlentities($subtitle); ?></h1>
     
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboardp'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboardp')); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
     <div class="section-header-button">
-        <form action="<?= base_url('periode/f_periodep'); ?>" method="post">
+        <form action="<?= htmlentities(base_url('periode/f_periodep')); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn mt-2 mb-2 btn-primary">
                 <i class="fas fa-plus"></i>
                 <span>Tambah Baru</span>
@@ -35,7 +36,7 @@
     <p class="section-lead">
         Informasi tentang data periode dihalaman ini.
     </p>
-    <div class="col-sm-12">
+    <div class="col-12 col-sm-12 col-lg-12">
         <div class="card card-primary">
                 <!-- <div class="card-header">
                     <h4></?= $subtitle2; ?></h4>
@@ -57,18 +58,19 @@
                                 <?php $no= 1; ?>
                                 <?php foreach ($procedure as $p) : ?>
                                 <tr>
-                                    <td class="text-center"><?= $no; ?></td>
-                                    <td><?= $p->kode; ?></td>
-                                    <td><?= $p->tahun; ?></td>
+                                    <td class="text-center"><?= htmlentities($no); ?></td>
+                                    <td><?= htmlentities($p->kode); ?></td>
+                                    <td><?= htmlentities($p->tahun); ?></td>
                                     <td style="width: 1%;" class="text-right"> 
-                                        <form action="<?= base_url('/master/f_editperiodep/' .$p->id); ?>" method="post">
-                                            <button style="cursor: pointer;" class="btn btn-sm btn-success" data-toggle="tooltip" title="EDIT PERIODE : <?= $p->kode; ?>">
+                                        <form action="<?= htmlentities(base_url('/master/f_editperiodep/' .$p->id)); ?>" method="post">
+                                            <?= csrf_field() ;?>
+                                            <button style="cursor: pointer;" class="btn btn-sm btn-success" data-toggle="tooltip" title="Edit periode : <?= htmlentities($p->kode); ?>">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </button>
                                         </form>
                                     </td>
                                     <td style="width: 1%;" class="text-right">
-                                        <a href="" data-id="" style="cursor: pointer;" class="btn btn-sm btn-danger btn-hapus" data-toggle="tooltip" title="DELETE PEGAWAI : ">
+                                        <a href="" data-id="" style="cursor: pointer;" class="btn btn-sm btn-danger btn-hapus" data-toggle="tooltip" title="Hapus periode : <?= htmlentities($p->kode) ;?> ">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>

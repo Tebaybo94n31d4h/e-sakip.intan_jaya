@@ -31,12 +31,12 @@
 
             <div class="card-body">
                 
-                <div class="col-sm-6" style="margin: auto;">
+                <div class="col-12 col-sm-12 col-lg-12" style="margin: auto;">
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <?= csrf_field(); ?>
                                         <div class="row">
-                                            <div class="position-relative form-group col">
+                                            <div class="position-relative form-group">
                                                 <input type="hidden" name="j_id" id="j_id" value="<?= $dataeditjabatan->id; ?>">
                                                 <label for="level">LEVEL</label>
                                                 <select class="form-control" name="level" id="level">
@@ -153,8 +153,8 @@
             var BidangID = "<?= $dataeditjabatan->bidang_id; ?>"
             console.log(BidangID);
            $.ajax({
-               type: "POST",
-               url: "<?= base_url(); ?>/master/getBidangp",
+               type: "GET",
+               url: "<?= base_url('/master/getBidangp'); ?>",
                data: {
                     BidangID : BidangID,
                },
@@ -170,8 +170,8 @@
             var subbidang_id = "<?= $dataeditjabatan->sub_bidang_id; ?>";
             console.log(bidang_id, subbidang_id);
             $.ajax({
-                type: "POST",
-                url: "<?= base_url(); ?>/master/getDataSubbidangp",
+                type: "GET",
+                url: "<?= base_url('/master/getDataSubbidangp'); ?>",
                 data: {
                     bidang_id : bidang_id,
                     subbidang_id : subbidang_id
@@ -189,7 +189,7 @@
         var j_id = "<?= $dataeditjabatan->id; ?>"
         $.ajax({
             type: "GET",
-            url: "<?= base_url(); ?>/master/f_editjabatanp/" + j_id + "/json",
+            url: "<?= base_url('/master/f_editjabatanp'); ?>/" + j_id + "/json",
             dataType: "JSON",
             success: function (response) {
                 console.log(response);

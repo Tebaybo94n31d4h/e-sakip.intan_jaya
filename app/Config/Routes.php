@@ -48,10 +48,10 @@ $routes->get('admin/dashboardo', 'Admin::dashboardo', ['filter' => 'filterauth']
 //---------------------------------------------------------------------------------
 	// Master Routes Hak Akses
 	$routes->get('master/hakakses', 'Master::hakakses', ['filter' => 'filterauth']);
-	$routes->get('master/f_hakakses', 'Master::hakakses', ['filter' => 'filterauth']);
+	$routes->get('master/f_hakakses', 'Master::f_hakakses', ['filter' => 'filterauth']);
 	$routes->post('master/proccesstambahhakakses', 'Master::proccesstambahhakakses', ['filter' => 'filterauth']);
 	$routes->get('master/f_edithakakses/(:num)', 'Master::f_edithakakses/$1', ['filter' => 'filterauth']);
-	$routes->post('master/proccessedithakakses', 'Master::proccessedithakakses', ['filter' => 'filterauth']);
+	$routes->put('master/proccessedithakakses', 'Master::proccessedithakakses', ['filter' => 'filterauth']);
 
 	//------------------------------------------------------------------------------------
 	// Master Routes User
@@ -93,7 +93,7 @@ $routes->get('admin/dashboardo', 'Admin::dashboardo', ['filter' => 'filterauth']
 	// -------------------------------------------------------------------
 	// Master Routes Pegawai Super
 	$routes->get('master/pegawais', 'Master::pegawais', ['filter' => 'filterauth']);
-	$routes->get('master/f_pegawais', 'Master::f_pegawais/$1', ['filter' => 'filterauth']);
+	$routes->get('master/f_pegawais', 'Master::f_pegawais/$1/$2', ['filter' => 'filterauth']);
 	$routes->post('master/proccesstambahpegawais', 'Master::proccesstambahpegawais', ['filter' => 'filterauth']);
 	$routes->get('master/f_editpegawais/(:num)', 'Master::f_editpegawais/$1', ['filter' => 'filterauth']);
 	$routes->put('master/proccesseditpegawais/(:num)', 'Master::proccesseditpegawais/$1', ['filter' => 'filterauth']);
@@ -227,7 +227,7 @@ $routes->get('admin/dashboardo', 'Admin::dashboardo', ['filter' => 'filterauth']
 	// renstra Routes Indikator sasaran
 	$routes->get('renstra/indikatorsasaranopd', 'Renstra::indikatorsasaranopd', ['filter' => 'filterauth']);
 	$routes->get('renstra/f_indikatorsasaranopdo', 'Renstra::f_indikatorsasaranopdo', ['filter' => 'filterauth']);
-	$routes->get('renstra/proccesstambahsasaranopdo', 'Renstra::proccesstambahsasaranopdo', ['filter' => 'filterauth']);
+	$routes->get('renstra/proccesstambahindikatorsasaran', 'Renstra::proccesstambahindikatorsasaran', ['filter' => 'filterauth']);
 
 	// ----------------------------------------------------------------------------------------------------------
 	// renstra Routes target sasaran OPD

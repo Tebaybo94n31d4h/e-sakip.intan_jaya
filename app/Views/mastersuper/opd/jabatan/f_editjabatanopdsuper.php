@@ -4,15 +4,15 @@
 
 
 <div class="section-header">
-    <h1><?= $subtitle; ?></h1>
+    <h1><?= htmlentities($subtitle); ?></h1>
     
     <div class="section-header-breadcrumb pr-2">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboard'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboard')); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
     <div class="section-header-back">
-        <form action="<?= base_url('master/jabatans/'. $back); ?>" method="post">
+        <form action="<?= htmlentities(base_url('master/jabatans/'. $back)); ?>" method="post">
             <button class="btn btn-primary">
                 <i class="fas fa-arrow-left"></i> 
             </button>
@@ -23,7 +23,7 @@
 
 <div class="section-body" style="font-size: 12px;">
     <div class="card">
-        <form action="<?= base_url('master/proccesseditjabatans'); ?>" method="POST" id="tab-content-1">
+        <form action="<?= htmlentities(base_url('master/proccesseditjabatans')); ?>" method="POST" id="tab-content-1">
 
             <div class="card-header">
                 <h4 class="card-title">Form Edit</h4>
@@ -31,21 +31,21 @@
 
             <div class="card-body">
                 
-                <div class="col-sm-12" style="margin: auto;">
+                <div class="col-12 col-sm-12 col-lg-12" style="margin: auto;">
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <?= csrf_field(); ?>
                             <div class="card">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-12 col-sm-12 col-lg-6">
                                         <p class="card-title text-primary" style="font-size: 16px; font-weight: bold;">Pilih Opsi</p>
                                         <div class="position-relative form-group">
-                                            <input type="hidden" name="j_id" id="j_id" value="<?= $dataeditjabatan->id; ?>">
+                                            <input type="hidden" name="j_id" id="j_id" value="<?= htmlentities($dataeditjabatan->id); ?>">
                                             <label for="level">Level</label>
                                             <select class="form-control" name="level" id="level">
                                                 <option value="">-- Pilih Level --</option>
                                                 <?php foreach($selectlevel as $sl) : ?>
-                                                    <option value="<?= $sl->id; ?>"><?= $sl->notes; ?></option>                                            
+                                                    <option value="<?= htmlentities($sl->id); ?>"><?= htmlentities($sl->notes); ?></option>                                            
                                                 <?php endforeach; ?>
                                             </select>
                                             <div class="invalid-feedback">
@@ -71,7 +71,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-12 col-sm-12 col-lg-6">
                                         <p class="card-title text-primary" style="font-size: 16px; font-weight: bold;">Biodata Jabatan</p>
                                         <div class="position-relative form-group">
                                             <label for="kode">KODE</label>
@@ -95,7 +95,7 @@
                                 <!-- Manipulasi Data Bidang dan Sub Bidang -->
                                 <?php foreach ($selectlevel as $lvl) : ?>
                                     <?php if ($lvl->id == 1) : ?>
-                                        <div class="position-relative form-group col" id="bidangManipulasi">
+                                        <div class="position-relative form-group col-12 col-sm-5 col-lg-6" id="bidangManipulasi">
                                             <label for="bidang_id">BIDANG</label>
                                             <select class="form-control" name="bidang_idManipulasi" id="bidang_idManipulasi">
                                                 <option value="NULL"></option>
@@ -104,7 +104,7 @@
                                                 <?= $validation->getError('bidang_id'); ?>
                                             </div>
                                         </div>
-                                        <div class="position-relative form-group col" id="subbidangManipulasi">
+                                        <div class="position-relative form-group col-12 col-sm-5 col-lg-6" id="subbidangManipulasi">
                                             <label for="">SUB BIDANG</label>
                                             <select class="form-control" name="sub_bidang_idManipulasi" id="sub_bidang_idManipulasi">
                                                 <option value="NULL"></option>
@@ -182,8 +182,8 @@
             var BidangID = "<?= $dataeditjabatan->bidang_id; ?>"
             console.log(BidangID);
            $.ajax({
-               type: "POST",
-               url: "<?= base_url(); ?>/master/getBidang",
+               type: "GET",
+               url: "<?= base_url('/master/getBidang'); ?>",
                data: {
                     BidangID : BidangID,
                },
@@ -199,8 +199,8 @@
             var subbidang_id = "<?= $dataeditjabatan->sub_bidang_id; ?>";
             console.log(bidang_id, subbidang_id);
             $.ajax({
-                type: "POST",
-                url: "<?= base_url(); ?>/master/getDataSubbidang",
+                type: "GET",
+                url: "<?= base_url('/master/getDataSubbidang'); ?>",
                 data: {
                     bidang_id : bidang_id,
                     subbidang_id : subbidang_id
@@ -218,7 +218,7 @@
         var j_id = "<?= $dataeditjabatan->id; ?>"
         $.ajax({
             type: "GET",
-            url: "<?= base_url(); ?>/master/f_editjabatans/" + j_id + "/json",
+            url: "<?= base_url('/master/f_editjabatans'); ?>/" + j_id + "/json",
             dataType: "JSON",
             success: function (response) {
                 console.log(response);

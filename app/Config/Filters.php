@@ -16,7 +16,8 @@ class Filters extends BaseConfig
      * @var array
      */
     public $aliases = [
-        'csrf'     => CSRF::class,
+        // 'csrf'     => CSRF::class,
+        'csrf' => \CodeIgniter\Filters\CSRF::class,
         'toolbar'  => DebugToolbar::class,
         'honeypot' => Honeypot::class,
         'filterauth'  => \App\Filters\FilterAuth::class,
@@ -36,11 +37,13 @@ class Filters extends BaseConfig
 					'home', 'home/*',
 					'/'
 				]
-			]
-			// 'honeypot',
+            ],
+
+			'honeypot',
+            'csrf',          
 			
 		],
-		'csrf',
+		
 		'after'  => [
 			'filterauth' => [
 				'except'=> [
@@ -56,7 +59,8 @@ class Filters extends BaseConfig
 				]
 			],
 			'toolbar',
-			// 'honeypot',
+            // 'csrf',
+			'honeypot',
 		],
     ];
 
@@ -69,7 +73,12 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $methods = [];
+    public $methods = [
+        'get'  => ['csrf'],
+        'post' => ['csrf'],
+        'put' => ['csrf'],
+        'delete' => ['csrf'],
+    ];
 
     /**
      * List of filter aliases that should run on any

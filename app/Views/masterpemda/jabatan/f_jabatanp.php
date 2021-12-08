@@ -5,15 +5,15 @@
 <div id="sudah_ada" data-sudah_ada="<?= session()->getFlashdata('sudah_ada');  ?>"></div>
 
 <div class="section-header">
-    <h1><?= $subtitle; ?></h1>
+    <h1><?= htmlentities($subtitle); ?></h1>
     
     <div class="section-header-breadcrumb pr-2">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboardp'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboardp')); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
     <div class="section-header-back">
-        <form action="<?= base_url('master/jabatanp'); ?>" method="post">
+        <form action="<?= htmlentities(base_url('master/jabatanp')); ?>" method="post">
             <button class="btn mt-2 mb-2 btn-primary">
                 <i class="fas fa-arrow-left"></i> 
             </button>
@@ -24,43 +24,45 @@
 
 <div class="section-body">
     <div class="card">
-        <form action="<?= base_url('master/proccesstambahjabatanp'); ?>" method="POST" id="tab-content-1">
+        <form action="<?= htmlentities(base_url('master/proccesstambahjabatanp')); ?>" method="POST" id="tab-content-1">
 
             <div class="card-header">
                 <h4 class="card-title">Form Tambah</h4>
             </div>
 
-            <div class="col-sm-10" style="margin: auto;">
+            <div class="col-12 col-sm-12 col-lg-12" style="margin: auto;">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <?= csrf_field(); ?>
                         <div class="card">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-12 col-sm-12 col-lg-6">
                                     <div class="position-relative form-group">
                                         <p class="card-title text-primary" style="font-size: 16px; font-weight: bold;">Data Jabatan</p>
-                                        <label for="nama_jabatan">Nama Jabatan</label>
-                                        <input name="nama_jabatan" id="nama_jabatan" type="text" class="form-control <?= ($validation->hasError('nama_jabatan')) ? 'is-invalid' : ''; ?>">
-                                        <div class="invalid-feedback">
-                                            <?= $validation->getError('nama_jabatan'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="position-relative form-group">
                                         <label for="kd">Kode</label>
-                                        <input name="kd" id="kd" type="text" class="form-control <?= ($validation->hasError('kd')) ? 'is-invalid' : ''; ?>">
+                                        <input name="kd" id="kd" type="text" class="form-control <?= ($validation->hasError('kd')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan kode jabatan">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('kd'); ?>
                                         </div>
                                     </div>
+                                    <div class="position-relative form-group">
+                                        
+                                        <label for="nama_jabatan">Nama Jabatan</label>
+                                        <input name="nama_jabatan" id="nama_jabatan" type="text" class="form-control <?= ($validation->hasError('nama_jabatan')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan nama jabatan">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('nama_jabatan'); ?>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
-                                <div class="col">
+                                <div class="col-12 col-sm-12 col-lg-6">
                                     <p class="card-title text-primary" style="font-size: 16px; font-weight: bold;">Pilih Opsi</p>
                                     <div class="position-relative form-group col">
                                         <label for="lvl">Level</label>
                                         <select class="form-control <?= ($validation->hasError('lvl')) ? 'is-invalid' : ''; ?>" name="lvl" id="lvl">
                                             <option value="">-- Pilih Level --</option>
                                             <?php foreach($selectlevel as $sl) : ?>
-                                                <option value="<?= $sl->id; ?>"><?= $sl->notes; ?></option>
+                                                <option value="<?= htmlentities($sl->id); ?>"><?= htmlentities($sl->notes); ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                         <div class="invalid-feedback">
@@ -80,7 +82,7 @@
                                                         <?= $validation->getError('b_idManipulasi'); ?>
                                                     </div>
                                                 </div>
-                                                <div class="position-relative form-group col" id="subbidangManipulasi">
+                                                <div class="position-relative form-group col-12 col-sm-6 col-lg-12" id="subbidangManipulasi">
                                                     <label for="">Sub Bidang</label>
                                                     <select class="form-control" name="sb_idManipulasi" id="sb_idManipulasi">
                                                         <option value="NULL"></option>
@@ -93,12 +95,12 @@
                                         <?php endforeach; ?>
                                     <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 
-                                    <div class="position-relative form-group col" id="bidang">
+                                    <div class="position-relative form-group col-12 col-sm-6 col-lg-12" id="bidang">
                                         <label for="b_id">Bidang</label>
                                         <select class="form-control" name="b_id" id="b_id">
                                             <option value="">-- Pilih Bidang --</option>
                                             <?php foreach($selectbidang as $value) : ?>
-                                            <option value="<?= $value->id; ?>"><?= $value->nama_bidang; ?></option>
+                                            <option value="<?= htmlentities($value->id); ?>"><?= htmlentities($value->nama_bidang); ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                         <div class="invalid-feedback">
@@ -106,7 +108,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="position-relative form-group col" id="subbidang">
+                                    <div class="position-relative form-group col-12 col-sm-6 col-lg-12" id="subbidang">
                                         <label for="">Sub Bidang</label>
                                         <select class="form-control" name="sb_id" id="sb_id">
                                             <option>-- Pilih Sub Bidang --</option>
@@ -124,7 +126,7 @@
 
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-success"> <i class="fas fa-paper-plane"></i> Simpan</button>
-                <a href="<?= base_url('master/jabatanp'); ?>" class="ml-1 btn btn-secondary">Batal</a>
+                <a href="<?= htmlentities(base_url('master/jabatanp')); ?>" class="ml-1 btn btn-secondary">Batal</a>
             </div>
 
         </form>
@@ -178,8 +180,8 @@
 
         $("#lvl").change(function () {
            $.ajax({
-               type: "POST",
-               url: "<?= base_url(); ?>/master/getBidangpemda",
+               type: "GET",
+               url: "<?= base_url('/master/getBidangpemda'); ?>",
                dataType: "JSON",
                success: function (response) {
                    var bidang = $("#b_id").html(response)
@@ -194,8 +196,8 @@
             var b_id = $("#b_id").val();
             console.log(b_id);
             $.ajax({
-                type: "POST",
-                url: "<?= base_url(); ?>/master/getDataSubbidangpemda",
+                type: "GET",
+                url: "<?= base_url('/master/getDataSubbidangpemda'); ?>",
                 data: {
                     b_id : b_id
                 },

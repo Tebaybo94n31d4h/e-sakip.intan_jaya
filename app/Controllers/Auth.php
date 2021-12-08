@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\HTTP\IncomingRequest;
+use App\Controllers\BaseController;
 use Config\Database;
 use CodeIgniter\Database\BaseBuilder;
 use App\Models\ModelAuth;
@@ -16,24 +17,24 @@ class Auth extends BaseController
 		helper('form');
 		$this->ModelAuth = new ModelAuth();
 		$validation =  \Config\Services::validation();
-		$security =  \Config\Services::security();
+		$this->security =  \Config\Services::security();
 	}
 	public function login()
 	{
 		if (session()->logged_in) {
 			if (session()->hakakses == 0) {
-				// session()->setFlashdata('password_salah', 'user password tidak sesuai !');
 				return redirect()->to('admin/dashboards');
+				session()->setFlashdata('masuk', 'berhasil masuk !');
 			}
 
 			if (session()->hakakses == 1) {
-				// session()->setFlashdata('password_salah', 'user password tidak sesuai !');
 				return redirect()->to('admin/dashboardp');
+				session()->setFlashdata('masuk', 'berhasil masuk !');
 			}
 
 			if (session()->hakakses == 2) {
-				// session()->setFlashdata('password_salah', 'user password tidak sesuai !');
 				return redirect()->to('admin/dashboardo');
+				session()->setFlashdata('masuk', 'berhasil masuk !');
 			}
 			
 		}
@@ -75,8 +76,8 @@ class Auth extends BaseController
 
 		// jika lolos Validasi
 		// ambil inputan login
-		$username = $this->security->sanitizeFilename($this->request->getVar('username'));
-		$password = $this->security->sanitizeFilename($this->request->getVar('password'));
+		$username = $this->security->sanitizeFilename(htmlspecialchars($this->request->getVar('username')));
+		$password = $this->security->sanitizeFilename(htmlspecialchars($this->request->getVar('password')));
 		// $username = $this->request->getVar('username');
 		// $password = $this->request->getVar('password');
 
@@ -85,15 +86,17 @@ class Auth extends BaseController
 		// dd($cek_login);
 
 		if ($cek_login->n == 50) {
-			// dd($cek_login);
+
 				$data_sess = [
-					'id'       =>  $cek_login->usr_id,
-					'username' => $cek_login->usr_name2,
-					'hakakses' => $cek_login->hak_akses_id,
+					'id'       =>  htmlspecialchars($cek_login->usr_id),
+					'username' => htmlspecialchars($cek_login->usr_name2),
+					'hakakses' => htmlspecialchars($cek_login->hak_akses_id),
 					// 'pegawai_id' => $cek_login->id_pegawai,
 					'logged_in'     => TRUE
 				];
 				session()->set($data_sess);
+
+				// Menentukan login hak akses berdasarkan id
 				if (session()->hakakses == 0) {
 					// session()->setFlashdata('password_salah', 'user password tidak sesuai !');
 					return redirect()->to('admin/dashboards');
@@ -108,19 +111,19 @@ class Auth extends BaseController
 				}
 				
 
-			}elseif ($cek_login->n == 51) {
-				// jika password tidk sesuai
-				session()->setFlashdata('password_salah', 'user password tidak sesuai !');
-				return redirect()->to(base_url('auth/login'));
-			} elseif ($cek_login->n == 52) {
-				// jika user belum ktif
-				session()->setFlashdata('user_tdk_aktif', 'user belum aktivasi !');
-				return redirect()->to(base_url('auth/login'));
-			} elseif ($cek_login->n == 53) {
-				// jika user belum terdaftar
-				session()->setFlashdata('belum_regis', 'user atau email tidak ditemukan !');
-				return redirect()->to(base_url('auth/login'));
-			}
+		}elseif ($cek_login->n == 51) {
+			// jika password tidk sesuai
+			session()->setFlashdata('password_salah', 'user password tidak sesuai !');
+			return redirect()->to(base_url('auth/login'));
+		} elseif ($cek_login->n == 52) {
+			// jika user belum ktif
+			session()->setFlashdata('user_tdk_aktif', 'user belum aktivasi !');
+			return redirect()->to(base_url('auth/login'));
+		} elseif ($cek_login->n == 53) {
+			// jika user belum terdaftar
+			session()->setFlashdata('belum_regis', 'user atau email tidak ditemukan !');
+			return redirect()->to(base_url('auth/login'));
+		}
 
 	}
 
@@ -129,5 +132,6 @@ class Auth extends BaseController
 
         session()->destroy();
         return redirect()->to('auth/login');
+		
     }
 }

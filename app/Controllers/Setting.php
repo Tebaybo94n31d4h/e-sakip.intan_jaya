@@ -73,59 +73,70 @@ class Setting extends BaseController
     // Update is Module Akses
     public function updateIsModul()
     {
-        $id = $this->request->getVar('id');
-        $name = $this->request->getVar('name');
 
-        $builder = $this->db->table('hak_akses_dtl');
+        if (session()->logged_in) {
+            if (session()->hakakses == 0) {
+                
+                $id = htmlspecialchars($this->request->getVar('id'));
+                $name = htmlspecialchars($this->request->getVar('name'));
 
-        if ($name == "is_view") {
-            $value = $this->request->getVar('value');
-            if ($value == 1) {
-                $builder->set('is_view', 0);
-                $builder->where('id', $id);
-            }
-            if ($value == 0) {
-                $builder->set('is_view', 1);
-                $builder->where('id', $id);
-            }
-        }
-        if ($name == "is_insert") {
-            $value = $this->request->getVar('value');
-            if ($value == 1) {
-                $builder->set('is_insert', 0);
-                $builder->where('id', $id);
-            }
-            if ($value == 0) {
-                $builder->set('is_insert', 1);
-                $builder->where('id', $id);
-            }
-        }
-        if ($name == "is_update") {
-            $value = $this->request->getVar('value');
-            if ($value == 1) {
-                $builder->set('is_update', 0);
-                $builder->where('id', $id);
-            }
-            if ($value == 0) {
-                $builder->set('is_update', 1);
-                $builder->where('id', $id);
-            }
-        }
-        if ($name == "is_delete") {
-            $value = $this->request->getVar('value');
-            if ($value == 1) {
-                $builder->set('is_delete', 0);
-                $builder->where('id', $id);
-            }
-            if ($value == 0) {
-                $builder->set('is_delete', 1);
-                $builder->where('id', $id);
+                $builder = $this->db->table('hak_akses_dtl');
+
+                if ($name == "is_view") {
+                    $value = htmlspecialchars($this->request->getVar('value'));
+                    if ($value == 1) {
+                        $builder->set('is_view', 0);
+                        $builder->where('id', $id);
+                    }
+                    if ($value == 0) {
+                        $builder->set('is_view', 1);
+                        $builder->where('id', $id);
+                    }
+                }
+                if ($name == "is_insert") {
+                    $value = htmlspecialchars($this->request->getVar('value'));
+                    if ($value == 1) {
+                        $builder->set('is_insert', 0);
+                        $builder->where('id', $id);
+                    }
+                    if ($value == 0) {
+                        $builder->set('is_insert', 1);
+                        $builder->where('id', $id);
+                    }
+                }
+                if ($name == "is_update") {
+                    $value = htmlspecialchars($this->request->getVar('value'));
+                    if ($value == 1) {
+                        $builder->set('is_update', 0);
+                        $builder->where('id', $id);
+                    }
+                    if ($value == 0) {
+                        $builder->set('is_update', 1);
+                        $builder->where('id', $id);
+                    }
+                }
+                if ($name == "is_delete") {
+                    $value = htmlspecialchars($this->request->getVar('value'));
+                    if ($value == 1) {
+                        $builder->set('is_delete', 0);
+                        $builder->where('id', $id);
+                    }
+                    if ($value == 0) {
+                        $builder->set('is_delete', 1);
+                        $builder->where('id', $id);
+                    }
+                }
+
+                return $builder->update();
+                session()->setFlashdata('berhasil', 'data berhasil diupdate !');
+                return redirect()->back()->withInput();
+
+            } else {
+                return redirect()->to('blocked/blocked');
             }
         }
 
-        return $builder->update();
-        session()->setFlashdata('berhasil', 'data berhasil diupdate !');
-        return redirect()->back()->withInput();
+        
 
     }
 
@@ -196,13 +207,13 @@ class Setting extends BaseController
 
         $validation->setRules($validasi);
         if ($validation->withRequest($this->request)->run()) {
-            $usr = $this->request->getVar('usr');
-            $psswd = $this->request->getVar('psswd');
-            $opd_id = $this->request->getVar('opd_id');
-            $p_id = $this->request->getVar('p_id');
-            $usr_input_id = session()->id;
-            $nama_usr = $this->request->getVar('nama_usr');
-            $hah_id = $this->request->getVar('hah_id');
+            $usr = htmlspecialchars($this->request->getVar('usr'));
+            $psswd = htmlspecialchars($this->request->getVar('psswd'));
+            $opd_id = htmlspecialchars($this->request->getVar('opd_id'));
+            $p_id = htmlspecialchars($this->request->getVar('p_id'));
+            $usr_input_id = htmlspecialchars(session()->id);
+            $nama_usr = htmlspecialchars($this->request->getVar('nama_usr'));
+            $hah_id = htmlspecialchars($this->request->getVar('hah_id'));
             // dd($pegawai_id,$kd,$nama_bidang,$tipe_bidang_id,$opd_id);
             $simpan = $this->db->query("CALL user_insert('$usr','$psswd','$hah_id','$opd_id','$p_id','$usr_input_id','$nama_usr')")->getRow();
             

@@ -10,15 +10,16 @@
 <div id="hapus" data-hapus="<?= session()->getFlashdata('hapus');  ?>"></div>
 
 <div class="section-header">
-    <h1><?= $subtitle; ?></h1>
+    <h1><?= htmlentities($subtitle); ?></h1>
     
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboardp'); ?>">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="<?= htmlentities(base_url('admin/dashboardp')); ?>">Dashboard</a></div>
         <!-- <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div> -->
-        <div class="breadcrumb-item"><?= $subtitle; ?></div>
+        <div class="breadcrumb-item"><?= htmlentities($subtitle); ?></div>
     </div>
     <div class="section-header-button">
-        <form action="<?= base_url('master/f_pegawaip'); ?>" method="post">
+        <form action="<?= htmlentities(base_url('master/f_pegawaip')); ?>" method="post">
+            <?= csrf_field() ;?>
             <button class="btn mt-2 mb-2 btn-primary">
                 <i class="fas fa-plus"></i>
                 <span>Tambah Baru</span>
@@ -55,25 +56,26 @@
                                 <?php $no= 1; ?>
                                 <?php foreach ($procedure as $p) : ?>
                                 <tr>
-                                    <td><?= $no; ?></td>
-                                    <td><?= $p->nip; ?></td>
-                                    <td><?= $p->nama_pegawai; ?></td>
+                                    <td><?= htmlentities($no); ?></td>
+                                    <td><?= htmlentities($p->nip); ?></td>
+                                    <td><?= htmlentities($p->nama_pegawai); ?></td>
                                     <!-- <td>
                                         <form action="</?= base_url('/master/f_detailpegawaip/' . $p->id); ?>" method="post">
-                                            <button style="cursor: pointer;" class="btn btn-sm btn-light" data-toggle="tooltip" title="DETAIL PEGAWAI : <?= $p->nama_pegawai; ?>">
+                                            <button style="cursor: pointer;" class="btn btn-sm btn-light" data-toggle="tooltip" title="DETAIL PEGAWAI : <?= htmlentities($p->nama_pegawai); ?>">
                                                 <i class="fas fa-eye"></i>
                                             </button>
                                         </form>
                                     </td> -->
                                     <td class="text-right">
-                                        <form action="<?= base_url('/master/f_editpegawaip/' . $p->id); ?>" method="post">
-                                            <button style="cursor: pointer;" class="btn btn-sm btn-success" data-toggle="tooltip" title="EDIT PEGAWAI : <?= $p->nama_pegawai; ?>">
+                                        <form action="<?= htmlentities(base_url('/master/f_editpegawaip/' . $p->id)); ?>" method="post">
+                                            <?= csrf_field() ;?>
+                                            <button style="cursor: pointer;" class="btn btn-sm btn-success" data-toggle="tooltip" title="Edit pegawai : <?= htmlentities($p->nama_pegawai); ?>">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </button>
                                         </form>
                                     </td>
                                     <td>
-                                        <a href="" data-id="<?= $p->id; ?>" style="cursor: pointer;" class="btn btn-sm btn-danger btn-hapus" data-toggle="tooltip" title="DELETE PEGAWAI : <?= $p->nama_pegawai; ?>">
+                                        <a href="" data-id="<?= htmlentities($p->id); ?>" style="cursor: pointer;" class="btn btn-sm btn-danger btn-hapus" data-toggle="tooltip" title="Hapus pegawai : <?= htmlentities($p->nama_pegawai); ?>">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
